@@ -1,0 +1,11 @@
+arch
+compile
+dev
+fs
+gdbscripts
+Makefile
+proc
+test
+thread
+vfs
+vm

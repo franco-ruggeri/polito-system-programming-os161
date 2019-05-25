@@ -4,8 +4,8 @@
 
 #include <types.h>
 #include <lib.h>
-#include <kern/unistd.h>
-#include <syscall.h>
+#include <kern/unistd.h>  	// STDOUT_FILENO, STDIN_FILENO, STDERR_FILENO
+#include <syscall.h>		// prototypes sys_write() and sys_read()
 
 ssize_t sys_write(int fd, const void *buf, size_t count) {
 	size_t i;

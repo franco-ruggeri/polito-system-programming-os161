@@ -36,6 +36,8 @@
 #include <current.h>
 #include <syscall.h>
 
+#include "opt-syscall.h"
+
 
 /*
  * System call dispatcher.
@@ -111,14 +113,20 @@ syscall(struct trapframe *tf)
 
 	    /* Add stuff here */
 #if OPT_SYSCALL
-	case SYS_write:
-	  err = sys_write(tf->tf_a0, tf->tf_a1, tf->tf_a2);
-	  tf->tf_v0 = err;  // return value
-	  tf->tf_a3 = (err < 0) ? 1 : 0;  // 1 in case of error, 0 otherwise
-	  break;
+	    case SYS_write:
+	      	retval = sys_write(tf->tf_a0, (const void *) tf->tf_a1, tf->tf_a2);
+		err = retval;
+	      	break;
 
-	case SYS_read:
-	  break;
+	    case SYS_read:
+	    	retval = sys_read(tf->tf_a0, (void *) tf->tf_a1, tf->tf_a2);
+		err = retval;
+	        break;
+
+	    case SYS__exit:
+		sys__exit(tf->tf_a0);
+		err = 0;
+		break;
 #endif
 
 	    default:

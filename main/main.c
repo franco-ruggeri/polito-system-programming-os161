@@ -54,8 +54,10 @@
 /* lab 1 */
 #include "opt-hello.h"
 #include "opt-threads.h"
-#include "opt-syscall.h"
 #include "hello.h"
+
+/* lab 2 */
+#include "opt-syscall.h"
 
 
 /*

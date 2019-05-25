@@ -34,7 +34,7 @@ options dumbvm			# Chewing gum and baling wire.
 
 ########################################
 #                                      #
-#              Lab 1		       #
+#              Lab 2		       #
 #                                      #
 ########################################
 options	syscall	

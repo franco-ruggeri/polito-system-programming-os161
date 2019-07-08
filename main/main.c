@@ -54,6 +54,7 @@
 /* lab 1 */
 #include "opt-hello.h"
 #include "opt-threads.h"
+#include "opt-userp.h"
 #include "hello.h"
 
 /* lab 2 */
@@ -227,6 +228,12 @@ kmain(char *arguments)
 #if OPT_THREADS
 	kprintf("\n");
 	kprintf("Threads version\n");
+	kprintf("\n");
+#endif
+
+#if OPT_USERP
+	kprintf("\n");
+	kprintf("User processes version\n");
 	kprintf("\n");
 #endif
 

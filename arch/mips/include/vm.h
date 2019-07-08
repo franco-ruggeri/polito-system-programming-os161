@@ -67,6 +67,11 @@
  */
 #define PADDR_TO_KVADDR(paddr) ((paddr)+MIPS_KSEG0)
 
+#include "opt-dumbvm_with_free.h"
+#if OPT_DUMBVM2
+#define KVADDR_TO_PADDR(vaddr) ((vaddr)-MIPS_KSEG0)
+#endif
+
 /*
  * The top of user space. (Actually, the address immediately above the
  * last valid user address.)

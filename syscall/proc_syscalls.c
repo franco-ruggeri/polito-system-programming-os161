@@ -4,13 +4,12 @@
 
 #include <types.h>
 #include <thread.h>	// thread_exit()
-#include <proc.h>	// struct proc
+#include <proc.h>	// proc_getas()
 #include <addrspace.h>	// as_destroy()
-#include <current.h>	// curproc
 #include <syscall.h>	// prototype sys__exit()
 
 void sys__exit(int status) {
 	(void) status;
-	as_destroy(curproc->p_addrspace);
+	as_destroy(proc_getas());
 	thread_exit();
 }

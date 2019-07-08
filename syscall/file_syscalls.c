@@ -29,14 +29,12 @@ ssize_t sys_read(int fd, void *buf, size_t count) {
 
 	/* not stdin, not yet supported */
 	if (fd != STDIN_FILENO) {
-		kprintf("sys_write() does not support this file descriptor\n");
+		kprintf("sys_read() does not support this file descriptor\n");
 		return -1;
 	}
 
-	for (i=0; i<count; i++) {
+	/* stdin */
+	for (i=0; i<count; i++)
 		ptr[i] = getch();
-		if (ptr[i] < 0)
-			return i;
-	}
 	return count;
 }

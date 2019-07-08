@@ -59,6 +59,7 @@
 
 /* lab 2 */
 #include "opt-syscall.h"
+#include "opt-dumbvm_with_free.h"
 
 
 /*
@@ -227,19 +228,23 @@ kmain(char *arguments)
 
 #if OPT_THREADS
 	kprintf("\n");
-	kprintf("Threads version\n");
+	kprintf("Studying threads...\n");
 	kprintf("\n");
 #endif
 
 #if OPT_USERP
 	kprintf("\n");
-	kprintf("User processes version\n");
+	kprintf("Studying user processes...\n");
 	kprintf("\n");
 #endif
 
 #if OPT_SYSCALL
 	kprintf("\n");
-	kprintf("Syscall version\n");
+	kprintf("Support to syscalls\n");
+#endif
+
+#if OPT_DUMBVM_WITH_FREE
+	kprintf("Support to free memory\n");
 	kprintf("\n");
 #endif
 

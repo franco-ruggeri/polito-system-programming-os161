@@ -460,3 +460,11 @@ defoption	syscall
 defoption	dumbvm_with_free
 optfile	syscall	syscall/file_syscalls.c
 optfile	syscall	syscall/proc_syscalls.c
+
+
+########################################
+#                                      #
+#              Lab 3		       #
+#                                      #
+########################################
+defoption 	lock_with_sem

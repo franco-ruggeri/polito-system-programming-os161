@@ -36,6 +36,7 @@
 
 
 #include <spinlock.h>
+#include "opt-lock_with_sem.h"
 
 /*
  * Dijkstra-style semaphore.
@@ -76,6 +77,11 @@ struct lock {
         char *lk_name;
         // add what you need here
         // (don't forget to mark things volatile as needed)
+#if OPT_LOCK_WITH_SEM
+	struct semaphore *lk_sem;
+	struct thread *lk_owner;
+	struct spinlock *mutex_lk_owner;
+#endif
 };
 
 struct lock *lock_create(const char *name);

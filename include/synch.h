@@ -36,7 +36,8 @@
 
 
 #include <spinlock.h>
-#include "opt-lock_with_sem.h"
+#include "opt-lock.h"
+#include "opt-cv.h"
 
 /*
  * Dijkstra-style semaphore.
@@ -63,6 +64,9 @@ void sem_destroy(struct semaphore *);
 void P(struct semaphore *);
 void V(struct semaphore *);
 
+#if OPT_LOCK
+#define LOCK_WITH_SEM 0
+#endif
 
 /*
  * Simple lock for mutual exclusion.
@@ -77,10 +81,14 @@ struct lock {
         char *lk_name;
         // add what you need here
         // (don't forget to mark things volatile as needed)
-#if OPT_LOCK_WITH_SEM
+#if OPT_LOCK
+#if LOCK_WITH_SEM
 	struct semaphore *lk_sem;
+#else
+	struct wchan *lk_wchan;
+#endif
+	struct spinlock *lk_lock;
 	struct thread *lk_owner;
-	struct spinlock *mutex_lk_owner;
 #endif
 };
 
@@ -121,6 +129,10 @@ struct cv {
         char *cv_name;
         // add what you need here
         // (don't forget to mark things volatile as needed)
+#if OPT_CV
+	struct wchan *cv_wchan;
+	struct spinlock *cv_lock;
+#endif
 };
 
 struct cv *cv_create(const char *name);

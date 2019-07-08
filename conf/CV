@@ -40,4 +40,5 @@ options dumbvm_with_free
 #              Lab 3		       #
 #                                      #
 ########################################
-options	lock_with_sem
+options	lock
+options cv

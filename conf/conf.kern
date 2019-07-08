@@ -467,4 +467,5 @@ optfile	syscall	syscall/proc_syscalls.c
 #              Lab 3		       #
 #                                      #
 ########################################
-defoption 	lock_with_sem
+defoption 	lock
+defoption	cv

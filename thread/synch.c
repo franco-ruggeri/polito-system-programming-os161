@@ -297,7 +297,7 @@ cv_wait(struct cv *cv, struct lock *lock)
 	 * held by the thread while sleeping, not permitted.
 	 * Why not permitted? Other threads can be in busy waiting
 	 * on spinlock_acquire() while the thread owning the spinlock
-	 * is sleeping, not efficient (spinlock must be used for short waits).
+	 * is sleeping, not efficient (spinlock must be used only for short waits).
 	 * As a consequence, lock acquire upon wakeup is not guaranteed, 
 	 * but it is compliant to Mesa semantic (see synch.h).
 	 * Due to this, the client has also the responsibility to use while 

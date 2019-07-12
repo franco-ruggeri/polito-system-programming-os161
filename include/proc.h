@@ -76,7 +76,7 @@ struct proc {
 
 	/* add more material here as needed */
 #if OPT_WAITPID
-	pid_t pid;
+	pid_t p_pid;
 	int exit_code;
 	struct semaphore *p_exit_sem;
 #endif

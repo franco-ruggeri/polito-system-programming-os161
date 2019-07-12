@@ -104,7 +104,7 @@ proc_create(const char *name)
 	for (i=0; i<PROC_TABLE_SIZE; i++) {
 		if (!proc_table[i]) {
 			proc_table[i] = proc;
-			proc->pid = i;
+			proc->p_pid = i;
 			break;
 		}
 	}
@@ -208,7 +208,7 @@ proc_destroy(struct proc *proc)
 
 	/* remove from process table */
 	spinlock_acquire(&proc_table_lock);
-	proc_table[proc->pid] = NULL;
+	proc_table[proc->p_pid] = NULL;
 	spinlock_release(&proc_table_lock);
 #endif
 
@@ -365,9 +365,13 @@ proc_setas(struct addrspace *newas)
 
 #if OPT_WAITPID
 void proc_exit(int status) {
+	/*
+	 * curproc is a macro that retrieves the current process through curthread.
+	 * After proc_remthread, it does not work, so it has to be saved before.
+	 */
 	struct proc *proc = curproc;
 
-	proc->exit_code = status;
+	proc->exit_code = status & 0xff;  // last 8 bit
 	proc_remthread(curthread);
 	V(proc->p_exit_sem);	
 }

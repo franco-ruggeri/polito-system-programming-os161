@@ -75,7 +75,7 @@ pid_t sys_fork(struct trapframe *tf) {
 	//*child_tf = *tf;	// equivalent
 
 	/* save child pid to return it to the father */
-	child_pid = child->pid;
+	child_pid = child->p_pid;
 
 	/* fork a new kernel thread that runs child (becoming user thread) */
 	result = thread_fork(child->p_name, child, runchild, (void *) child_tf, (unsigned long) 0);
@@ -90,6 +90,6 @@ pid_t sys_fork(struct trapframe *tf) {
 #if OPT_GETPID
 pid_t sys_getpid(void) {
 	KASSERT(curproc != NULL);
-	return curproc->pid;
+	return curproc->p_pid;
 }
 #endif

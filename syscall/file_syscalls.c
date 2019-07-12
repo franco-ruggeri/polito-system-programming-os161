@@ -12,7 +12,7 @@ ssize_t sys_write(int fd, const void *buf, size_t count) {
 	char *ptr = (char *) buf;
 
 	/* not stdout, not yet supported */
-	if (fd != STDOUT_FILENO)
+	if (fd != STDOUT_FILENO && fd != STDERR_FILENO)
 		return -1;
 	
 	/* stdout */

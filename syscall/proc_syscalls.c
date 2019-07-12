@@ -52,6 +52,12 @@ pid_t sys_fork(struct trapframe *tf) {
 	if (child == NULL)
 		return -1;
 
+	/*
+	 * The address space and the trapframe must be duplicated
+	 * before forking the thread, because otherwise the father
+	 * may exit before the duplication (freeing as and tf).
+	*/
+
 	/* Duplicate address space */
 	result = as_copy(curproc->p_addrspace, &child->p_addrspace);
 	if (result) {
@@ -59,11 +65,7 @@ pid_t sys_fork(struct trapframe *tf) {
 		return -1;
 	}
 
-	/*
-	 * Duplicate trapframe because the father may return
-	 * from the system call before the child starts the user
-	 * mode (so the original trapframe may be out of scope).
-	 */
+	/* Duplicate trapframe */
 	child_tf = kmalloc(sizeof(*child_tf));
 	if (child_tf == NULL) {
 		proc_destroy(child);

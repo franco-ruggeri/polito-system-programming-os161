@@ -35,8 +35,8 @@
 #include <thread.h>
 #include <current.h>
 #include <syscall.h>
-
 #include "opt-syscall.h"
+#include "opt-waitpid.h"
 
 
 /*
@@ -114,19 +114,42 @@ syscall(struct trapframe *tf)
 	    /* Add stuff here */
 #if OPT_SYSCALL
 	    case SYS_write:
-	      	retval = sys_write(tf->tf_a0, (const void *) tf->tf_a1, tf->tf_a2);
-		if (retval < 0)
-			err = ENOSYS;
+	      	retval = sys_write((int) tf->tf_a0, (const void *) tf->tf_a1, (size_t) tf->tf_a2);
+		if (retval < 0) err = ENOSYS;
+		else err = 0;
 	      	break;
 
 	    case SYS_read:
-	    	retval = sys_read(tf->tf_a0, (void *) tf->tf_a1, tf->tf_a2);
-		if (retval < 0)
-			err = ENOSYS;
+	    	retval = sys_read((int) tf->tf_a0, (void *) tf->tf_a1, (size_t) tf->tf_a2);
+		if (retval < 0) err = ENOSYS;
+		else err = 0;
 	        break;
 
 	    case SYS__exit:
-		sys__exit(tf->tf_a0);
+		sys__exit((int) tf->tf_a0);
+		err = 0;
+		break;
+#endif
+
+#if OPT_WAITPID
+	    case SYS_waitpid:
+		retval = sys_waitpid((pid_t) tf->tf_a0, (int *) tf->tf_a1, (int) tf->tf_a2);
+		if (retval < 0) err = EINVAL;
+		else err = 0;
+		break;
+#endif
+
+#if OPT_FORK
+	    case SYS_fork:
+		retval = sys_fork(tf);
+		if (retval < 0) err = ENOMEM;
+		else err = 0;
+		break;
+#endif
+
+#if OPT_GETPID
+	    case SYS_getpid:
+		retval = sys_getpid();
 		err = 0;
 		break;
 #endif
@@ -174,8 +197,23 @@ syscall(struct trapframe *tf)
  *
  * Thus, you can trash it and do things another way if you prefer.
  */
-void
-enter_forked_process(struct trapframe *tf)
-{
+void enter_forked_process(struct trapframe *tf) {
+#if OPT_FORK
+	/*
+	 * Copy the trapframe onto the kernel stack.
+	 * This is done because the usermode is entered
+	 * using the same code for returning from exception
+	 * (exception_return in exception-mips.S), which
+	 * obviously restores the trapframe saved onto the stack
+	 * at the beginning of the exception handler.
+	 */
+	struct trapframe tf_stack = *tf;
+	kfree(tf);
+	tf_stack.tf_v0 = 0;	// return value of fork()
+	tf_stack.tf_a3 = 0;	// no error
+	tf_stack.tf_epc += 4;	// next instruction (otherwise fork() again)
+	mips_usermode(&tf_stack);
+#else
 	(void)tf;
+#endif
 }

@@ -12,10 +12,8 @@ ssize_t sys_write(int fd, const void *buf, size_t count) {
 	char *ptr = (char *) buf;
 
 	/* not stdout, not yet supported */
-	if (fd != STDOUT_FILENO) {
-		kprintf("sys_write() does not support this file descriptor\n");
+	if (fd != STDOUT_FILENO)
 		return -1;
-	}
 	
 	/* stdout */
 	for (i=0; i<count; i++) 
@@ -28,10 +26,8 @@ ssize_t sys_read(int fd, void *buf, size_t count) {
 	char *ptr = (char *) buf;
 
 	/* not stdin, not yet supported */
-	if (fd != STDIN_FILENO) {
-		kprintf("sys_read() does not support this file descriptor\n");
+	if (fd != STDIN_FILENO)
 		return -1;
-	}
 
 	/* stdin */
 	for (i=0; i<count; i++)

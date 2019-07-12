@@ -162,16 +162,18 @@ static paddr_t getppages(unsigned long npages) {
 
 	spinlock_acquire(&stealmem_lock);
 	addr = ram_stealmem(npages);
+	spinlock_release(&stealmem_lock);
 
 #if OPT_DUMBVM_WITH_FREE
 	/* store allocation size for freeppages() */
+	spinlock_acquire(&freemem_lock);
 	if (addr && vm_ready) {
 		first_frame = addr / PAGE_SIZE;
 		allocation_size[first_frame] = npages;
 	}
+	spinlock_release(&freemem_lock);
 #endif
 
-	spinlock_release(&stealmem_lock);
 	return addr;
 }
 

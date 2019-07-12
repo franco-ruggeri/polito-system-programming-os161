@@ -54,6 +54,12 @@
  */
 struct proc *kproc;
 
+#if OPT_WAITPID
+#define PROC_TABLE_SIZE 100
+static struct proc *proc_table[PROC_TABLE_SIZE];
+static struct spinlock proc_table_lock = SPINLOCK_INITIALIZER;
+#endif
+
 /*
  * Create a proc structure.
  */
@@ -81,6 +87,35 @@ proc_create(const char *name)
 
 	/* VFS fields */
 	proc->p_cwd = NULL;
+
+#if OPT_WAITPID
+	int i;
+
+	/* semaphore to signal exit */
+	proc->p_exit_sem = sem_create(proc->p_name, 0);
+	if (proc->p_exit_sem == NULL) {
+		kfree(proc);
+		kfree(proc->p_name);
+		return NULL;
+	}
+	
+	/* generate pid and update process table */
+	spinlock_acquire(&proc_table_lock);
+	for (i=0; i<PROC_TABLE_SIZE; i++) {
+		if (!proc_table[i]) {
+			proc_table[i] = proc;
+			proc->pid = i;
+			break;
+		}
+	}
+	spinlock_release(&proc_table_lock);
+	if (i == PROC_TABLE_SIZE) {	// table full
+		kfree(proc);
+		kfree(proc->p_name);
+		sem_destroy(proc->p_exit_sem);
+		return NULL;
+	}
+#endif
 
 	return proc;
 }
@@ -167,6 +202,15 @@ proc_destroy(struct proc *proc)
 
 	KASSERT(proc->p_numthreads == 0);
 	spinlock_cleanup(&proc->p_lock);
+
+#if OPT_WAITPID
+	sem_destroy(proc->p_exit_sem);
+
+	/* remove from process table */
+	spinlock_acquire(&proc_table_lock);
+	proc_table[proc->pid] = NULL;
+	spinlock_release(&proc_table_lock);
+#endif
 
 	kfree(proc->p_name);
 	kfree(proc);
@@ -318,3 +362,31 @@ proc_setas(struct addrspace *newas)
 	spinlock_release(&proc->p_lock);
 	return oldas;
 }
+
+#if OPT_WAITPID
+void proc_exit(int status) {
+	struct proc *proc = curproc;
+
+	proc->exit_code = status;
+	proc_remthread(curthread);
+	V(proc->p_exit_sem);	
+}
+
+int proc_wait(struct proc *p) {
+	int status;
+
+	KASSERT(p != NULL);
+	P(p->p_exit_sem);
+	status = p->exit_code;
+	proc_destroy(p);
+	return status;
+}
+
+struct proc *proc_search(pid_t pid) {
+	struct proc *p;
+	spinlock_acquire(&proc_table_lock);
+	p = proc_table[pid];
+	spinlock_release(&proc_table_lock);
+	return p;
+}
+#endif

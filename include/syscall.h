@@ -66,4 +66,19 @@ ssize_t sys_read(int fd, void *buf, size_t count);
 void sys__exit(int status);
 #endif
 
+/* lab 4 */
+#include "opt-waitpid.h"
+#include "opt-fork.h"
+#include "opt-getpid.h"
+#if OPT_WAITPID
+pid_t sys_waitpid(pid_t pid, int *status, int options);
+#endif
+#if OPT_FORK
+void runchild(void *tf, unsigned long unused);
+pid_t sys_fork(struct trapframe *tf);
+#endif
+#if OPT_GETPID
+pid_t sys_getpid(void);
+#endif
+
 #endif /* _SYSCALL_H_ */

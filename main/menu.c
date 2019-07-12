@@ -43,6 +43,7 @@
 #include <test.h>
 #include "opt-sfs.h"
 #include "opt-net.h"
+#include "opt-waitpid.h"
 
 /*
  * In-kernel menu and command dispatcher.
@@ -88,6 +89,9 @@ cmd_progthread(void *ptr, unsigned long nargs)
 
 	result = runprogram(progname);
 	if (result) {
+#if OPT_WAITPID
+		proc_exit(-1);
+#endif
 		kprintf("Running program %s failed: %s\n", args[0],
 			strerror(result));
 		return;
@@ -135,6 +139,10 @@ common_prog(int nargs, char **args)
 	 * The new process will be destroyed when the program exits...
 	 * once you write the code for handling that.
 	 */
+
+#if OPT_WAITPID
+	kprintf("User process terminated with status %d\n", proc_wait(proc));
+#endif
 
 	return 0;
 }

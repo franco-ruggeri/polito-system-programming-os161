@@ -141,6 +141,7 @@ common_prog(int nargs, char **args)
 	 */
 
 #if OPT_WAITPID
+	/* The OS will ask a new command only after the completion of the user process */
 	kprintf("User process terminated with status %d\n", proc_wait(proc));
 #endif
 

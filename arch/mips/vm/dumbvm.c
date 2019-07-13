@@ -68,13 +68,13 @@ static struct spinlock stealmem_lock = SPINLOCK_INITIALIZER;
  * Lab 2
  * The idea is to work at this level, instead of ram.c.
  * Basically, before requesting memory to RAM, try to reuse freed frames.
- * The state of frames is traced with a bitmap.
+ * The state of frames is traced with an array of flag for simplicity (improvement => bitmap).
  * Until the bootstrap is not completed (vm_ready=0), it is accepted to allocate pages that cannot be freed.
  * See the set of slides 3.
  */
 #include "opt-dumbvm_with_free.h"
 #if OPT_DUMBVM_WITH_FREE
-static char *free_frames;	// bitmap, 1 => allocated and then freed, 0 => never allocated or allocated
+static char *free_frames;	// 1 => allocated and then freed, 0 => never allocated or allocated
 static size_t *allocation_size;	// number of contiguous frames allocated (e.g. allocation_size[1]=2 => allocation of frames 1+2)
 static volatile size_t n_frames;
 static volatile int vm_ready=0;	// bootstrap completed

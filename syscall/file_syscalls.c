@@ -23,6 +23,7 @@ ssize_t sys_write(int fd, const void *buf, size_t count) {
 
 ssize_t sys_read(int fd, void *buf, size_t count) {
 	size_t i;
+	int result;
 	char *ptr = (char *) buf;
 
 	/* not stdin, not yet supported */
@@ -30,7 +31,10 @@ ssize_t sys_read(int fd, void *buf, size_t count) {
 		return -1;
 
 	/* stdin */
-	for (i=0; i<count; i++)
-		ptr[i] = getch();
+	for (i=0; i<count; i++) {
+		result = getch();
+		if (result < 0) return i;
+		ptr[i] = (char) result;
+	}
 	return count;
 }

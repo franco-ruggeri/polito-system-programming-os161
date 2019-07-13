@@ -141,7 +141,12 @@ common_prog(int nargs, char **args)
 	 */
 
 #if OPT_WAITPID
-	/* The OS will ask a new command only after the completion of the user process */
+	/* 
+	 * The kernel menu will ask a new command only after the completion of the user process.
+	 * This solves also the problem of concurrent input, when the user process makes input
+	 * (i.e. the user input could be read by the kernel menu or by the user process, randomly).
+	 * See topic lab 2 in the forum.
+	 */
 	kprintf("User process terminated with status %d\n", proc_wait(proc));
 #endif
 

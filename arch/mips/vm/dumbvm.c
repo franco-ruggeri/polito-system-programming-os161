@@ -72,8 +72,7 @@ static struct spinlock stealmem_lock = SPINLOCK_INITIALIZER;
  * Until the bootstrap is not completed (vm_ready=0), it is accepted to allocate pages that cannot be freed.
  * See the set of slides 3.
  */
-#include "opt-dumbvm_with_free.h"
-#if OPT_DUMBVM_WITH_FREE
+#if OPT_DUMBVM_FREE	// "opt-dumbvm_free.h" is included by vm.h -> machine/vm.h
 static char *free_frames;	// 1 => allocated and then freed, 0 => never allocated or allocated
 static size_t *allocation_size;	// number of contiguous frames allocated (e.g. allocation_size[1]=2 => allocation of frames 1+2)
 static volatile size_t n_frames;
@@ -82,7 +81,7 @@ static struct spinlock freemem_lock = SPINLOCK_INITIALIZER;
 #endif
 
 void vm_bootstrap(void) {
-#if OPT_DUMBVM_WITH_FREE
+#if OPT_DUMBVM_FREE
 	size_t i;
 	n_frames = ram_getsize() / PAGE_SIZE;
 	free_frames = kmalloc(n_frames * sizeof(*free_frames));
@@ -125,7 +124,7 @@ dumbvm_can_sleep(void)
 static paddr_t getppages(unsigned long npages) {
 	paddr_t addr;
 
-#if OPT_DUMBVM_WITH_FREE
+#if OPT_DUMBVM_FREE
 	int first_frame, found=0;
 	size_t i, n_contiguous=0;
 
@@ -164,7 +163,7 @@ static paddr_t getppages(unsigned long npages) {
 	addr = ram_stealmem(npages);
 	spinlock_release(&stealmem_lock);
 
-#if OPT_DUMBVM_WITH_FREE
+#if OPT_DUMBVM_FREE
 	/* store allocation size for freeppages() */
 	spinlock_acquire(&freemem_lock);
 	if (addr && vm_ready) {
@@ -177,7 +176,7 @@ static paddr_t getppages(unsigned long npages) {
 	return addr;
 }
 
-#if OPT_DUMBVM_WITH_FREE
+#if OPT_DUMBVM_FREE
 static void freeppages(paddr_t addr) {
 	int first_frame;
 	size_t i;
@@ -207,7 +206,7 @@ alloc_kpages(unsigned npages)
 }
 
 void free_kpages(vaddr_t addr) {
-#if OPT_DUMBVM_WITH_FREE
+#if OPT_DUMBVM_FREE
 	freeppages(KVADDR_TO_PADDR(addr));
 #else
 	/* nothing - leak the memory. */
@@ -347,7 +346,7 @@ as_destroy(struct addrspace *as)
 {
 	dumbvm_can_sleep();
 	
-#if OPT_DUMBVM_WITH_FREE
+#if OPT_DUMBVM_FREE
 	freeppages(as->as_pbase1);
 	freeppages(as->as_pbase2);
 	freeppages(as->as_stackpbase);

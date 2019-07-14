@@ -52,14 +52,10 @@
 #include "autoconf.h"  // for pseudoconfig
 
 /* lab 1 */
-#include "opt-hello.h"
+#include "hello.h"
 #include "opt-threads.h"
 #include "opt-userp.h"
-#include "hello.h"
 
-/* lab 2 */
-#include "opt-syscall.h"
-#include "opt-dumbvm_with_free.h"
 
 
 /*
@@ -220,33 +216,38 @@ kmain(char *arguments)
 {
 	boot();
 
-#if OPT_HELLO
 	kprintf("\n");
+#if OPT_HELLO
 	hello();
 	kprintf("\n");
 #endif
-
 #if OPT_THREADS
-	kprintf("\n");
 	kprintf("Studying threads...\n");
 	kprintf("\n");
 #endif
-
 #if OPT_USERP
-	kprintf("\n");
 	kprintf("Studying user processes...\n");
-	kprintf("\n");
+#endif
+#if OPT_SYSCALL_BASIC
+	kprintf("Support for basic syscalls (I/O console and basic exit)\n");
+#endif
+#if OPT_DUMBVM_FREE
+	kprintf("Support for memory free\n");
+#endif
+#if OPT_LOCK
+	kprintf("Support for locks\n");
+#endif
+#if OPT_WAITPID
+	kprintf("Support for waitpid\n");
+#endif
+#if OPT_FORK
+	kprintf("Support for fork\n");
+#endif
+#if OPT_GETPID
+	kprintf("Support for getpid\n");
 #endif
 
-#if OPT_SYSCALL
 	kprintf("\n");
-	kprintf("Support to syscalls\n");
-#endif
-
-#if OPT_DUMBVM_WITH_FREE
-	kprintf("Support to free memory\n");
-	kprintf("\n");
-#endif
 
 	menu(arguments);
 

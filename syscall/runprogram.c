@@ -45,19 +45,32 @@
 #include <syscall.h>
 #include <test.h>
 
+#if OPT_MAIN_ARGS
+#include <copyinout.h>
+#endif
+
 /*
  * Load program "progname" and start running it in usermode.
  * Does not return except on error.
  *
  * Calls vfs_open on progname and thus may destroy it.
  */
+#if OPT_MAIN_ARGS
+int runprogram(int nargs, char **args)
+#else
 int
 runprogram(char *progname)
+#endif
 {
 	struct addrspace *as;
 	struct vnode *v;
 	vaddr_t entrypoint, stackptr;
 	int result;
+
+#if OPT_MAIN_ARGS
+	char *progname = args[0];
+	char **argv;	// userspace addr
+#endif
 
 	/* Open the file. */
 	result = vfs_open(progname, O_RDONLY, 0, &v);
@@ -97,10 +110,38 @@ runprogram(char *progname)
 		return result;
 	}
 
+#if OPT_MAIN_ARGS
+	/*
+	 * Copy arguments in the userspace stack.
+	 * Pointers must be at multiple of 4, while chars do not have constraints.
+	 * To understand easily the following operations, draw the stack.
+	 */
+	int i, len;
+	
+	/* copy pointers */
+	stackptr &= ~(0xFF);			// align
+	stackptr -= nargs*sizeof(char *);	// space for pointers
+	argv = (char **) stackptr;		// SP to the last first free position
+	
+	/* copy strings */
+	for (i=0; i<nargs; i++) {
+		len = strlen(args[i]) + 1;	// +1 to include '\0'
+		stackptr -= len * sizeof(char);
+		memcpy((void *) stackptr, args[i], len * sizeof(char));
+		argv[i] = (char *) stackptr;	// set pointer
+	}
+#endif
+
 	/* Warp to user mode. */
+#if OPT_MAIN_ARGS
+	enter_new_process(nargs /*argc*/, (userptr_t) argv /*userspace addr of argv*/,
+			  NULL /*userspace addr of environment*/,
+			  stackptr, entrypoint);
+#else
 	enter_new_process(0 /*argc*/, NULL /*userspace addr of argv*/,
 			  NULL /*userspace addr of environment*/,
 			  stackptr, entrypoint);
+#endif
 
 	/* enter_new_process does not return. */
 	panic("enter_new_process returned\n");

@@ -49,14 +49,18 @@
 #include <addrspace.h>
 #include <vnode.h>
 
+#if OPT_FILEIO
+#include <kern/errno.h>
+#endif
+
 /*
  * The process for the kernel; this holds all the kernel-only threads.
  */
 struct proc *kproc;
 
 #if OPT_WAITPID
-#define PROC_TABLE_SIZE 100
-static struct proc *proc_table[PROC_TABLE_SIZE];
+#define MAX_PROC 100
+static struct proc *proc_table[MAX_PROC];
 static struct spinlock proc_table_lock = SPINLOCK_INITIALIZER;
 #endif
 
@@ -68,6 +72,7 @@ struct proc *
 proc_create(const char *name)
 {
 	struct proc *proc;
+	int i;
 
 	proc = kmalloc(sizeof(*proc));
 	if (proc == NULL) {
@@ -87,10 +92,14 @@ proc_create(const char *name)
 
 	/* VFS fields */
 	proc->p_cwd = NULL;
+#if OPT_FILEIO
+	for (i=3; i<MAX_FILES; i++) {
+		proc->p_open_files[i] = NULL;
+		proc->p_file_offsets[i] = 0;
+	}
+#endif
 
 #if OPT_WAITPID
-	int i;
-
 	/* semaphore to signal exit */
 	proc->p_exit_sem = sem_create(proc->p_name, 0);
 	if (proc->p_exit_sem == NULL) {
@@ -101,7 +110,7 @@ proc_create(const char *name)
 	
 	/* generate pid and update process table */
 	spinlock_acquire(&proc_table_lock);
-	for (i=0; i<PROC_TABLE_SIZE; i++) {
+	for (i=0; i<MAX_PROC; i++) {
 		if (!proc_table[i]) {
 			proc_table[i] = proc;
 			proc->p_pid = i;
@@ -109,7 +118,7 @@ proc_create(const char *name)
 		}
 	}
 	spinlock_release(&proc_table_lock);
-	if (i == PROC_TABLE_SIZE) {	// table full
+	if (i == MAX_PROC) {	// table full
 		kfree(proc);
 		kfree(proc->p_name);
 		sem_destroy(proc->p_exit_sem);
@@ -117,6 +126,7 @@ proc_create(const char *name)
 	}
 #endif
 
+	(void) i;
 	return proc;
 }
 
@@ -392,5 +402,57 @@ struct proc *proc_search(pid_t pid) {
 	p = proc_table[pid];
 	spinlock_release(&proc_table_lock);
 	return p;
+}
+#endif
+
+#if OPT_FILEIO
+int proc_add_file(struct vnode *v, int *fd) {
+	int i, result;
+
+	KASSERT(v != NULL);
+	/*
+	 * For the actual support, there is no need of mutex because
+	 * the open file table can be accessed only by the process itself.
+	 */
+	for (i=3; i<MAX_FILES; i++) {
+		if (curproc->p_open_files[i] == NULL) {
+			curproc->p_open_files[i] = v;
+			curproc->p_file_offsets[i] = 0;	// TODO: if opened in append mode => offset at filesize-1
+			*fd = i;
+			break;
+		}
+	}
+
+	if (i == MAX_FILES) result = ENOMEM;
+	else result = 0;
+	return result;
+}
+
+static int is_valid_fd(int fd) {
+	if (fd < 0 || fd >= MAX_FILES || curproc->p_open_files[fd] == NULL)
+		return 1;
+	return 0;
+}
+
+int proc_remove_file(int fd) {
+	if (is_valid_fd(fd))
+		return EBADF;
+	curproc->p_open_files[fd] = NULL;
+	return 0;
+}
+
+int proc_search_file(int fd, struct vnode **v, off_t *offset) {
+	if (is_valid_fd(fd))
+		return EBADF;
+	*v = curproc->p_open_files[fd];
+	*offset = curproc->p_file_offsets[fd];
+	return 0;
+}
+
+int proc_set_file_offset(int fd, off_t offset) {
+	if (is_valid_fd(fd))
+		return EBADF;
+	curproc->p_file_offsets[fd] = offset;
+	return 0;
 }
 #endif

@@ -32,17 +32,12 @@ options sfs			# Always use the file system
 options dumbvm			# Chewing gum and baling wire.
 
 
-# previous labs
+########################################
+#                                      #
+#              Lab 2		       #
+#                                      #
+########################################
 options	syscall_io
 options syscall_proc
 options syscall_basic
 options dumbvm_free
-
-
-########################################
-#                                      #
-#              Lab 3		       #
-#                                      #
-########################################
-options lock
-options cv

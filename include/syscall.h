@@ -59,10 +59,10 @@ int sys_reboot(int code);
 int sys___time(userptr_t user_seconds, userptr_t user_nanoseconds);
 
 /* lab 2 */
-#include "opt-syscall.h"
-#if OPT_SYSCALL
-ssize_t sys_write(int fd, const void *buf, size_t count);
-ssize_t sys_read(int fd, void *buf, size_t count);
+#include "opt-syscall_basic.h"
+#if OPT_SYSCALL_BASIC
+int sys_write(int fd, const void *buf, size_t count, size_t *retval);
+int sys_read(int fd, void *buf, size_t count, size_t *retval);
 void sys__exit(int status);
 #endif
 
@@ -71,14 +71,21 @@ void sys__exit(int status);
 #include "opt-fork.h"
 #include "opt-getpid.h"
 #if OPT_WAITPID
-pid_t sys_waitpid(pid_t pid, int *status, int options);
+int sys_waitpid(pid_t pid, int *status, int options);
 #endif
 #if OPT_FORK
 void runchild(void *tf, unsigned long unused);
-pid_t sys_fork(struct trapframe *tf);
+int sys_fork(struct trapframe *tf, pid_t *retval);
 #endif
 #if OPT_GETPID
 pid_t sys_getpid(void);
+#endif
+
+/* lab 5 */
+#include "opt-fileio.h"
+#if OPT_FILEIO
+int sys_open(const char *pathname, int flags, mode_t mode, int *retval);
+int sys_close(int fd);
 #endif
 
 #endif /* _SYSCALL_H_ */

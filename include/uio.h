@@ -138,5 +138,10 @@ int uiomovezeros(size_t len, struct uio *uio);
 void uio_kinit(struct iovec *, struct uio *,
 	       void *kbuf, size_t len, off_t pos, enum uio_rw rw);
 
+#include "opt-fileio.h"
+#if OPT_FILEIO
+void uio_uinit(struct iovec *, struct uio *,
+		void *ubuf, size_t len, off_t pos, enum uio_rw rw, struct addrspace *as);
+#endif
 
 #endif /* _UIO_H_ */

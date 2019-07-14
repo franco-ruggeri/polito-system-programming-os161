@@ -783,7 +783,10 @@ thread_exit(void)
 	 * Detach from our process. You might need to move this action
 	 * around, depending on how your wait/exit works.
 	 */
-#if !OPT_WAITPID	// moved in sys__exit()
+#if OPT_WAITPID	
+	if (cur->t_proc != NULL) 	// user process => already done in proc_exit() (called on exit())
+		proc_remthread(cur);	// kernel threads do not call proc_exit()
+#else
 	proc_remthread(cur);
 #endif
 

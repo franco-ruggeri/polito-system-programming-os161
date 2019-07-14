@@ -1,5 +1,4 @@
-/*
- * Copyright (c) 2013
+/* * Copyright (c) 2013
  *	The President and Fellows of Harvard College.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -37,6 +36,8 @@
  */
 
 #include <spinlock.h>
+
+/* lab 4 */
 #include "opt-waitpid.h"
 #if OPT_WAITPID
 #include <synch.h>
@@ -45,6 +46,12 @@
 struct addrspace;
 struct thread;
 struct vnode;
+
+/* lab 5 */
+#include "opt-fileio.h"
+#if OPT_FILEIO
+#define MAX_FILES 10
+#endif
 
 /*
  * Process structure.
@@ -73,6 +80,14 @@ struct proc {
 
 	/* VFS */
 	struct vnode *p_cwd;		/* current working directory */
+#if OPT_FILEIO
+	/*
+	 * The first 3 elements must not be used because they are
+	 * reserved for STDIN (fd=0), STDOUT (fd=1) and STDERR (fd=2).
+	 */
+	struct vnode *p_open_files[MAX_FILES];
+	off_t p_file_offsets[MAX_FILES];
+#endif
 
 	/* add more material here as needed */
 #if OPT_WAITPID
@@ -80,6 +95,7 @@ struct proc {
 	int exit_code;
 	struct semaphore *p_exit_sem;
 #endif
+
 };
 
 /* This is the process structure for the kernel and for kernel-only threads. */
@@ -110,6 +126,15 @@ struct addrspace *proc_setas(struct addrspace *);
 void proc_exit(int status);
 int proc_wait(struct proc *);
 struct proc *proc_search(pid_t pid);
+#endif
+
+/* lab 5 */
+#include "opt-fileio.h"
+#if OPT_FILEIO
+int proc_add_file(struct vnode *v, int *fd);
+int proc_remove_file(int fd);
+int proc_search_file(int fd, struct vnode **v, off_t *offset);
+int proc_set_file_offset(int fd, off_t offset);
 #endif
 
 #endif /* _PROC_H_ */

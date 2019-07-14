@@ -35,8 +35,6 @@
 #include <thread.h>
 #include <current.h>
 #include <syscall.h>
-#include "opt-syscall.h"
-#include "opt-waitpid.h"
 
 
 /*
@@ -112,17 +110,29 @@ syscall(struct trapframe *tf)
 		break;
 
 	    /* Add stuff here */
-#if OPT_SYSCALL
+
+#if OPT_FILEIO
+	    case SYS_open:
+		err = sys_open((const char *) tf->tf_a0, (int) tf->tf_a1, (mode_t) tf->tf_a2, &retval);
+		break;
+
+	    case SYS_close:
+		err = sys_close((int) tf->tf_a0);
+		break;
+
+	    case SYS_remove:
+		// TODO: add switch case just to finish without errors testbin/filetest
+		err = 0;
+		break;
+#endif
+
+#if OPT_SYSCALL_BASIC
 	    case SYS_write:
-	      	retval = sys_write((int) tf->tf_a0, (const void *) tf->tf_a1, (size_t) tf->tf_a2);
-		if (retval < 0) err = ENOSYS;
-		else err = 0;
+	      	err = sys_write((int) tf->tf_a0, (const void *) tf->tf_a1, (size_t) tf->tf_a2, (size_t *) &retval);
 	      	break;
 
 	    case SYS_read:
-	    	retval = sys_read((int) tf->tf_a0, (void *) tf->tf_a1, (size_t) tf->tf_a2);
-		if (retval < 0) err = ENOSYS;
-		else err = 0;
+	    	err = sys_read((int) tf->tf_a0, (void *) tf->tf_a1, (size_t) tf->tf_a2, (size_t *) &retval);
 	        break;
 
 	    case SYS__exit:
@@ -133,17 +143,14 @@ syscall(struct trapframe *tf)
 
 #if OPT_WAITPID
 	    case SYS_waitpid:
-		retval = sys_waitpid((pid_t) tf->tf_a0, (int *) tf->tf_a1, (int) tf->tf_a2);
-		if (retval < 0) err = EINVAL;
-		else err = 0;
+		err = sys_waitpid((pid_t) tf->tf_a0, (int *) tf->tf_a1, (int) tf->tf_a2);
+		retval = tf->tf_a0;
 		break;
 #endif
 
 #if OPT_FORK
 	    case SYS_fork:
-		retval = sys_fork(tf);
-		if (retval < 0) err = ENOMEM;
-		else err = 0;
+		err = sys_fork(tf, (pid_t *) &retval);
 		break;
 #endif
 

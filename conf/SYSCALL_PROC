@@ -37,12 +37,15 @@ options	syscall_io
 options syscall_proc
 options syscall_basic
 options dumbvm_free
-
-
-########################################
-#                                      #
-#              Lab 3		       #
-#                                      #
-########################################
 options lock
 options cv
+
+
+########################################
+#                                      #
+#              Lab 4		       #
+#                                      #
+########################################
+options waitpid
+options fork
+options getpid

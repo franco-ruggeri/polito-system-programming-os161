@@ -456,10 +456,14 @@ optfile	hello	main/hello.c
 #              Lab 2		       #
 #                                      #
 ########################################
-defoption	syscall
-defoption	dumbvm_with_free
-optfile	syscall	syscall/file_syscalls.c
-optfile	syscall	syscall/proc_syscalls.c
+# files
+defoption	syscall_io
+defoption	syscall_proc
+optfile syscall_io 	syscall/file_syscalls.c
+optfile syscall_proc 	syscall/proc_syscalls.c
+# implementation
+defoption	syscall_basic
+defoption	dumbvm_free
 
 
 ########################################
@@ -479,3 +483,12 @@ defoption	cv
 defoption	waitpid
 defoption	fork
 defoption	getpid
+
+
+########################################
+#                                      #
+#              Lab 5		       #
+#                                      #
+########################################
+defoption	fileio
+defoption	main_args

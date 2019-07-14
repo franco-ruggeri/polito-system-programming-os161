@@ -7,11 +7,11 @@
 #include <proc.h>	// proc_getas()
 #include <addrspace.h>	// as_destroy()
 #include <syscall.h>	// prototype sys__exit()
-#if OPT_WAITPID || OPT_FORK || OPT_GETPID
 #include <current.h>	// curproc
 #include <machine/trapframe.h>
-#endif
+#include <kern/errno.h>
 
+#if OPT_SYSCALL_BASIC
 void sys__exit(int status) {
 #if OPT_WAITPID
 	proc_exit(status);
@@ -21,16 +21,17 @@ void sys__exit(int status) {
 #endif
 	thread_exit();
 }
+#endif
 
 #if OPT_WAITPID
-pid_t sys_waitpid(pid_t pid, int *status, int options) {
+int sys_waitpid(pid_t pid, int *status, int options) {
 	struct proc *p;
 	(void) options;
 
 	if (pid < 0 || (p = proc_search(pid)) == NULL)	// invalid pid
-		return -1;
+		return ECHILD;
 	*status = proc_wait(p);
-	return pid;
+	return 0;
 }
 #endif
 
@@ -41,16 +42,16 @@ void runchild(void *tf, unsigned long unused) {
 	enter_forked_process((struct trapframe *) tf);
 }
 
-pid_t sys_fork(struct trapframe *tf) {
+int sys_fork(struct trapframe *tf, pid_t *retval) {
 	struct proc *child;
-	pid_t child_pid;
 	struct trapframe *child_tf;
 	int result;
 
 	/* Create new process */
 	child = proc_create_runprogram(curproc->p_name);
 	if (child == NULL)
-		return -1;
+		return ENOMEM;
+	*retval = child->p_pid;
 
 	/*
 	 * The address space and the trapframe must be duplicated
@@ -62,28 +63,26 @@ pid_t sys_fork(struct trapframe *tf) {
 	result = as_copy(curproc->p_addrspace, &child->p_addrspace);
 	if (result) {
 		proc_destroy(child);
-		return -1;
+		return result;
 	}
 
 	/* Duplicate trapframe */
 	child_tf = kmalloc(sizeof(*child_tf));
 	if (child_tf == NULL) {
 		proc_destroy(child);
-		return -1;
+		return ENOMEM;
 	}
 	memcpy(child_tf, tf, sizeof(*tf));
 	//*child_tf = *tf;	// equivalent
-
-	/* save child pid to return it to the father */
-	child_pid = child->p_pid;
 
 	/* fork a new kernel thread that runs child (becoming user thread) */
 	result = thread_fork(child->p_name, child, runchild, (void *) child_tf, (unsigned long) 0);
 	if (result) {
 		proc_destroy(child);
-		return -1;
+		return result;
 	}
-	return child_pid;
+
+	return result;
 }
 #endif
 

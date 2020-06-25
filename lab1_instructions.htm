@@ -1,0 +1,897 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 14 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Cambria;
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Times;
+	panose-1:2 2 6 3 5 4 5 2 3 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:0cm;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Times","serif";
+	color:windowtext;}
+h1
+	{mso-style-link:"Titolo 1 Carattere";
+	margin-right:0cm;
+	margin-left:0cm;
+	font-size:24.0pt;
+	font-family:"Times New Roman","serif";
+	color:black;
+	font-weight:bold;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;}
+p
+	{margin-right:0cm;
+	margin-left:0cm;
+	font-size:10.0pt;
+	font-family:"Times","serif";
+	color:black;}
+tt
+	{font-family:"Courier New";}
+p.MsoNoSpacing, li.MsoNoSpacing, div.MsoNoSpacing
+	{margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:0cm;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Times","serif";
+	color:black;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:36.0pt;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Times","serif";
+	color:black;}
+span.Titolo1Carattere
+	{mso-style-name:"Titolo 1 Carattere";
+	mso-style-link:"Titolo 1";
+	font-family:"Cambria","serif";
+	color:#365F91;
+	font-weight:bold;}
+p.msochpdefault, li.msochpdefault, div.msochpdefault
+	{mso-style-name:msochpdefault;
+	margin-right:0cm;
+	margin-left:0cm;
+	font-size:10.0pt;
+	font-family:"Times","serif";
+	color:black;}
+.MsoChpDefault
+	{font-size:10.0pt;}
+@page WordSection1
+	{size:595.3pt 841.9pt;
+	margin:70.85pt 2.0cm 2.0cm 2.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+
+<meta name=created content="00:00:00">
+<meta name=changed content="2016-04-19T10:51:39.128000000">
+<meta name="" content=it-IT>
+<meta name=Title content="">
+<meta name=created content="00:00:00">
+<meta name=changed content="2016-04-18T08:51:39.277000000">
+<meta name=created content="00:00:00">
+<meta name=changed content="2016-04-18T08:50:16.475000000">
+<meta name=created content="00:00:00">
+<meta name=changed content="2016-04-15T17:18:23.072000000">
+<meta name=CHANGEDBY content="Gianpiero Cabodi">
+</head>
+
+<body lang=IT link=blue vlink=purple>
+
+<div class=WordSection1>
+
+<p><b><span style='font-size:18.0pt'>PdS 2019 - Laboratorio OS161 1</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:14.2pt'>Il Sistema SYS161 – OS161 è
+installato in una macchina virtuale VBOX OSE, con S.O. Linux Ubuntu 14.04
+(versione in inglese).</p>
+
+<p class=MsoNormal style='margin-bottom:14.2pt'>Presso il LAIB1 sono
+disponibili macchine virtuali oVirt (Open Virtualization Manager) con Ubuntu 14.04
+(versione in italiano)</p>
+
+<p class=MsoNormal style='margin-bottom:14.2pt'>La macchina virtuale (file
+linux-pds-ovf10.ova) è anche disponibile per download (ad esempio per uso su PC
+personale) su <a href="https://elearning.polito.it/secure/linux-pds-ovf10.ova">https://elearning.polito.it/secure/linux-pds-ovf10.ova</a>
+(solo da intranet politecnico, occorre login con credenziali studente). Si
+consiglia, per uso personale, di installare VirtualBox
+(https://www.virtualbox.org).</p>
+
+<h1><span style='font-family:"Times","serif"'>Per attivare la macchina
+virtuale, eseguire i passi sotto-elencati</span></h1>
+
+<p style='margin-left:18.15pt;text-indent:-18.15pt;line-height:115%'>1)&nbsp;&nbsp;&nbsp;&nbsp;Login,
+al LABINF, su Windows (preferibile) o Linux. Login su Linux (versione specifica
+per OS161) al LAIB,</p>
+
+<p style='margin-left:18.15pt;text-indent:-18.15pt;line-height:115%'>2)&nbsp;&nbsp;&nbsp;&nbsp;Copiare
+il file linux-pds-ovf10.ova in un direttorio locale. Si tratta di un file
+compresso da cui verrà successivamente estratta la macchina virtuale. Al
+LABINBF il file si trova nella cartella <a href="file:///\\cclix1\corsi\cabodi">\\cclix1\corsi\cabodi</a>
+(windows) oppure smb://cclix1/corsi/cabodi. Su windows, il file va copiato in
+locale, evitando il disco Z: (dimensione non sufficiente). Su linux usare
+/var/tmp/&lt;matricola&gt;.</p>
+
+<p style='margin-left:18.15pt;text-indent:-18.15pt;line-height:115%'>3)&nbsp;&nbsp;&nbsp;&nbsp;Avviare
+Virtual Box.</p>
+
+<p style='margin-left:18.15pt;text-indent:-18.15pt;line-height:115%'>4)&nbsp;&nbsp;&nbsp;&nbsp;Importare
+la macchina virtuale utilizzando il comando “import appliance” (“importa
+applicazione virtuale”), Attenzione: per l’esecuzione al LABINF, nella finestra
+di configurazione della macchina virtuale, su consiglia di modificare il
+direttorio per l’immagine del disco virtuale, collocandolo in “/var/tmp” (per
+problemi di quota su disco), </p>
+
+<p style='margin-left:18.15pt;text-indent:-18.15pt;line-height:115%'>5)&nbsp;&nbsp;&nbsp;&nbsp;Avviare
+la macchina virtuale.</p>
+
+<p style='margin-left:18.15pt;text-indent:-18.15pt;line-height:115%'>6)&nbsp;&nbsp;&nbsp;&nbsp;E’
+abilitato automaticamente il login con </p>
+
+<p style='margin-left:53.3pt;text-indent:-18.15pt;line-height:115%'><span
+lang=EN-US style='font-family:Symbol'>·</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+USER: pds</p>
+
+<p style='margin-left:53.3pt;text-indent:-18.15pt;line-height:115%'><span
+lang=EN-US style='font-family:Symbol'>·</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+PASSWORD: pdsuser</p>
+
+<p style='margin-left:18.15pt;text-indent:-18.15pt;line-height:115%'>&nbsp;7)&nbsp;&nbsp;&nbsp;&nbsp;La
+macchina virtuale potrà essere esportata, al termine del lavoro, con una
+procedura duale: comando “export appliance” (esporta applicazione virtuale).</p>
+
+<p style='margin-left:18.15pt;text-indent:-18.15pt;line-height:115%'><b><span
+style='font-size:11.0pt;line-height:115%'>Procedura per Linux al LAIB</span></b></p>
+
+<p style='margin-left:18.15pt;text-indent:-18.15pt;line-height:115%'>Linux è
+disponibile come macchina virtuale in VDI (accessibile mediante client oVirt).
+La descrizione dettagliata viene fornita in un altro documento.</p>
+
+<p style='margin-left:18.15pt;text-indent:-18.15pt;line-height:115%'><b><i>Al
+termine del lavoro, è NECESSARIO chiudere la macchina virtuale linux (comando
+“arresta” in alto a destra, icona ingranaggio).</i></b>&nbsp;</p>
+
+<h1><span style='font-family:"Times","serif"'>Ambiente OS161</span></h1>
+
+<p class=MsoNormal style='margin-bottom:14.2pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:14.2pt'>Il sistema operativo os161 è
+stato pre-installato nel direttorio <b>os161/os161-base-2.0.2</b>, mentre i
+pacchetti SW richiesti, binutils, compilatore gcc e debugger gdb, emulatore
+MIPS, sono installati nella cartella <b>os161/tools</b>. SI NOTI CHE TUTTI I DIRETTORI
+SONO INDICATI A PARTIRE DA $HOME, che è /usr/pds (versione VBOX) oppure
+/home/corso (versione VDI/LAIB1).</p>
+
+<p class=MsoNormal style='margin-bottom:14.2pt'>Si ricorda che il sistema OS161
+è attivato sull’emulatore di processore MIPS, SYS161. Al fine di ri-compilare
+OS161, nonché di fare debug e altre operazioni (ad esempio visualizzazione di
+file eseguibili), sono necessari programmi previsti per la piattaforma MIPS,
+che sono stati installati con il prefisso “<b>mips-harvard-os161-“:
+mips-harvard-os161</b>-gcc, <b>mips-harvard-os161</b>-gdb (eseguibili in <b>os161/tools</b>/bin).</p>
+
+<p class=MsoNormal style='margin-bottom:14.2pt'>Il sito web di riferimento è: <a
+href="http://os161.eecs.harvard.edu/">http://os161.eecs.harvard.edu/</a>.
+L’ultima versione è disponibile (con le precedenti) su <a
+href="http://os161.eecs.harvard.edu/download/">http://os161.eecs.harvard.edu/download/</a>.</p>
+
+<p class=MsoNormal style='margin-bottom:14.2pt'>Un altro sito con informazioni
+interessanti è quello del corso cs350 dell’università di Waterloo (Canada): <a
+href="http://www.student.cs.uwaterloo.ca/%7Ecs350/common/OS161main.html">http://www.student.cs.uwaterloo.ca/~cs350/common/OS161main.html</a></p>
+
+<p class=MsoNormal style='margin-bottom:14.2pt'>Sul desktop della macchina
+virtuale è presente un link al codice sorgente “navigabile” da un web browser.
+Per eventuali installazioni sul proprio PC, occorre seguire le istruzioni
+presenti su uno dei siti sopra proposti. Si forniscono a parte degli script di
+installazione per un sistema Linux-Ubuntu.</p>
+
+<p class=MsoNormal style='margin-bottom:14.2pt'>Informazioni dettagliate su
+avvio ed esecuzione di OS161 sono raggiungibili, ad esempio, dal link: <a
+href="http://www.student.cs.uwaterloo.ca/~cs350/common/WorkingWith161.html">Working
+with OS161</a></p>
+
+<p class=MsoNormal style='margin-bottom:14.2pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:14.2pt'>La cartella iniziale di <b>lavoro</b>
+proposta è <b>pds-os161/root</b>.</p>
+
+<p class=MsoNormal style='margin-bottom:14.2pt'><a
+href="http://www.student.cs.uwaterloo.ca/~cs350/common/WorkingWith161.html"><span
+style='color:black;text-decoration:none'>&nbsp;</span></a></p>
+
+<p class=MsoNormal style='margin-bottom:14.2pt'><span style='display:inline-block'><i>ATTENZIONE:
+ci sono quindi due direttori</i></span></p>
+
+<p class=MsoListParagraph style='margin-top:5.0pt;margin-right:0cm;margin-bottom:
+14.2pt;margin-left:0cm'><span style='display:inline-block'><span
+style='font-family:Symbol'>·</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<i>os161: contiene sorgenti, file di configurazione, compilazione ed
+eseguibili, di os161 e dei tool utilizzati (è quindi l’area in cui si modifica
+e ri-compila os161)</i></span></p>
+
+<p class=MsoListParagraph style='margin-top:5.0pt;margin-right:0cm;margin-bottom:
+14.2pt;margin-left:0cm'><span style='display:inline-block'><span
+style='font-family:Symbol'>·</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<i>pds-os161/root: si tratta del direttorio in cui eseguire il (fare boot del) sistema
+operativo, ed eventualmente attivare processi user (è l’area in cui si esegue e
+si testa il sistema os161). &nbsp;</i></span></p>
+
+<p class=MsoNormal style='margin-bottom:14.2pt'>Per fare bootstrap di OS161 in
+ambiente emulato sys161 (da una shell, attivabile in una finestra “Terminal”),
+sono possibili due modalità:</p>
+
+<p style='margin-top:5.1pt;margin-right:0cm;margin-bottom:12.2pt;margin-left:
+18.15pt;text-indent:-18.15pt;line-height:115%'><span style='font-family:Symbol'>·</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Esecuzione
+normale:<br>
+<br>
+<i>cd $HOME/pds-os161/root<br>
+sys161 kernel</i><br>
+<br>
+Compare una videata come la seguente</p>
+
+<p class=MsoNormal style='margin-top:5.0pt;margin-right:0cm;margin-bottom:14.2pt;
+margin-left:70.6pt'><i><span lang=EN-US>sys161: System/161 release 2.0.8,
+compiled Mar 30 2016 12:38:39</span></i></p>
+
+<p class=MsoNormal style='margin-top:5.0pt;margin-right:0cm;margin-bottom:14.2pt;
+margin-left:70.6pt'><i><span lang=EN-US>OS/161 base system version 2.0.2</span></i></p>
+
+<p class=MsoNormal style='margin-top:5.0pt;margin-right:0cm;margin-bottom:14.2pt;
+margin-left:70.6pt'><i><span lang=EN-US style='color:black'>Copyright (c) 2000,
+2001-2005, 2008-2011, 2013, 2014</span></i></p>
+
+<p class=MsoNormal style='margin-top:5.0pt;margin-right:0cm;margin-bottom:14.2pt;
+margin-left:70.6pt'><i><span lang=EN-US>President and Fellows of Harvard
+College.&nbsp; All rights reserved.</span></i></p>
+
+<p class=MsoNormal style='margin-top:5.0pt;margin-right:0cm;margin-bottom:14.2pt;
+margin-left:70.6pt'><i><span lang=EN-US>Put-your-group-name-here's system
+version 0 (DUMBVM #1)</span></i></p>
+
+<p class=MsoNormal style='margin-top:5.0pt;margin-right:0cm;margin-bottom:14.2pt;
+margin-left:70.6pt'><i><span lang=EN-US>788k physical memory available</span></i></p>
+
+<p class=MsoNormal style='margin-top:5.0pt;margin-right:0cm;margin-bottom:14.2pt;
+margin-left:70.6pt'><i><span lang=EN-US>Device probe...</span></i></p>
+
+<p class=MsoNormal style='margin-top:5.0pt;margin-right:0cm;margin-bottom:14.2pt;
+margin-left:70.6pt'><i><span lang=EN-US>lamebus0 (system main bus)</span></i></p>
+
+<p class=MsoNormal style='margin-top:5.0pt;margin-right:0cm;margin-bottom:14.2pt;
+margin-left:70.6pt'><i><span lang=EN-US>emu0 at lamebus0</span></i></p>
+
+<p class=MsoNormal style='margin-top:5.0pt;margin-right:0cm;margin-bottom:14.2pt;
+margin-left:70.6pt'><i><span lang=EN-US>ltrace0 at lamebus0</span></i></p>
+
+<p class=MsoNormal style='margin-top:5.0pt;margin-right:0cm;margin-bottom:14.2pt;
+margin-left:70.6pt'><i><span lang=EN-US>ltimer0 at lamebus0</span></i></p>
+
+<p class=MsoNormal style='margin-top:5.0pt;margin-right:0cm;margin-bottom:14.2pt;
+margin-left:70.6pt'><i><span lang=EN-US>beep0 at ltimer0</span></i></p>
+
+<p class=MsoNormal style='margin-top:5.0pt;margin-right:0cm;margin-bottom:14.2pt;
+margin-left:70.6pt'><i><span lang=EN-US>rtclock0 at ltimer0</span></i></p>
+
+<p class=MsoNormal style='margin-top:5.0pt;margin-right:0cm;margin-bottom:14.2pt;
+margin-left:70.6pt'><i><span lang=EN-US>lrandom0 at lamebus0</span></i></p>
+
+<p class=MsoNormal style='margin-top:5.0pt;margin-right:0cm;margin-bottom:14.2pt;
+margin-left:70.6pt'><i><span lang=EN-US>random0 at lrandom0</span></i></p>
+
+<p class=MsoNormal style='margin-top:5.0pt;margin-right:0cm;margin-bottom:14.2pt;
+margin-left:70.6pt'><i><span lang=EN-US>lhd0 at lamebus0</span></i></p>
+
+<p class=MsoNormal style='margin-top:5.0pt;margin-right:0cm;margin-bottom:14.2pt;
+margin-left:70.6pt'><i><span lang=EN-US>lhd1 at lamebus0</span></i></p>
+
+<p class=MsoNormal style='margin-top:5.0pt;margin-right:0cm;margin-bottom:14.2pt;
+margin-left:70.6pt'><i><span lang=EN-US>lser0 at lamebus0</span></i></p>
+
+<p class=MsoNormal style='margin-top:5.0pt;margin-right:0cm;margin-bottom:14.2pt;
+margin-left:70.6pt'><i><span lang=EN-US>con0 at lser0</span></i></p>
+
+<p class=MsoNormal style='margin-bottom:12.0pt'><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-top:5.0pt;margin-right:0cm;margin-bottom:14.2pt;
+margin-left:70.6pt'><i><span lang=EN-US>cpu0: MIPS/161 (System/161 2.x)
+features 0x0</span></i><span lang=EN-US>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-top:5.0pt;margin-right:0cm;margin-bottom:14.2pt;
+margin-left:70.6pt'><i>OS/161 kernel [? for menu]: </i></p>
+
+<p class=MsoNormal style='margin-bottom:12.0pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-top:5.0pt;margin-right:0cm;margin-bottom:12.2pt;
+margin-left:35.45pt'>Dalla quale sono attivabili comandi (menu con ?). Alcuni
+comandi (es. quelli selezionabili con ?o) non sono completamente disponibili,
+in quanto OS161 non è un sistema completo (richiede aggiunte da parte dello
+studente). </p>
+
+<p style='margin-left:18.15pt;text-indent:-18.15pt;line-height:115%'><span
+style='font-family:Symbol'>·</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Esecuzione con
+<b><i>debugger</i></b>. </p>
+
+<p style='margin-left:18.15pt;text-indent:-18.15pt;line-height:115%'><b><i>ATTENZIONE:
+il programma eseguito sul sistema Ububtu è sys161. Sys161 è un eseguibile per
+la macchina host (con processore Intel o AMD, sys161 viene già fornito e NON
+necessita debug). Il comando “sys161 kernel” manda in esecuzione “sys161”, un
+programma che funge da macchina virtuale con processore MIPS, per la quale
+“kernel” è un file “eseguibile” che viene caricato e mandato in esecuzione:
+obiettivo del laboratorio è interagire con “kernel”, eseguito su macchina MIPS
+(sys161), NON interagire con sys161. </i></b></p>
+
+<p style='margin-left:18.15pt;text-indent:-18.15pt;line-height:115%'>Occorre
+evitare di fare il debug dell’emulatore SYS161. Il debugger (per la piattaforma
+MIPS) deve quindi essere eseguito una volta avviato SYS161. A tale scopo
+occorrono due processi, uno per eseguire sys161 (avviato in una modalità
+predisposta per fare debug del kernel) e uno per mips-harvard-os161-gdb (un
+debugger predisposto per macchina mips), comunicanti mediante socket. Si
+consiglia di attivare due finestre terminale. Sulla prima, dal direttorio
+pds-os161/root eseguire il comando:<br>
+<span style='font-family:"Courier New"'><br>
+<i>sys161 -w kernel<br>
+</i></span><br>
+sulla seconda, dallo stesso direttorio <br>
+<br>
+<i><span style='font-family:"Courier New"'>mips-harvard-os161-gdb kernel<br>
+(gdb) dir ../../os161/os161-base-2.0.2/kern/compile/DUMBVM<br>
+(gdb) target remote unix:.sockets/gdb<br>
+</span></i><br>
+attenzione ad utilizzare lo stesso kernel. DUMBVM rappresenta una particolare
+versione, eventualmente modificata, del sistema operativo os161. Le tre righe
+rappresentano, rispettivamente:</p>
+
+<p style='margin-left:36.0pt;text-indent:-18.0pt;line-height:115%'><span
+style='font-family:Symbol'>·</span><span style='font-size:7.0pt;line-height:
+115%;font-family:"Times New Roman","serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>L’eseguibile (MIPS) di cui fare debug</p>
+
+<p style='margin-left:36.0pt;text-indent:-18.0pt;line-height:115%'><span
+style='font-family:Symbol'>·</span><span style='font-size:7.0pt;line-height:
+115%;font-family:"Times New Roman","serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>Il direttorio (di compilazione) da cui partire per localizzare i file
+sorgenti (solo se si è interessati, <b>fortemente consigliato</b>, a una
+sessione di debug in cui si si visualizzi il programma sorgente C). In questo
+caso è sufficiente localizzare i file oggetto, che contengono i riferimenti ai
+sorgenti</p>
+
+<p style='margin-left:36.0pt;text-indent:-18.0pt;line-height:115%'><span
+style='font-family:Symbol'>·</span><span style='font-size:7.0pt;line-height:
+115%;font-family:"Times New Roman","serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span>La connessione al socket per far colloquiare sys161 e debugger</p>
+
+<p style='margin-left:18.15pt;text-indent:-18.15pt;line-height:115%'>La
+creazione di una nuova versione viene descritta nel seguito (“Modificare il
+Kernel”). Se, dopo aver ricompilato altri kernel (es. kernel-GENERIC,
+kernel-ASST1, kernel-HELLO, …) si utilizzerà uno di questi, va usato lo stesso
+nelle due finestre. </p>
+
+<p style='margin-left:18.15pt;text-indent:-18.15pt;line-height:115%'>I due
+comandi iniziali (dir e target) sono stati per comodità inseriti in un file di
+comandi di inizializzazione per gdb (pds-os161/root/.gdbinit), che definisce un
+unico comando, “dbos161” (e lo chiama, rendendo inutile l’esecuzione
+esplicita). QUINDI, NELLA VERSIONE INSTALLATA, NON SONO NECESSARI I TRE
+COMANDI, SE SI USA DUMBVM. SE SI CAMBIA VERSIONE, SI CONSIGLIA DI MODIFICARE
+OPPORTUNAMENTE &nbsp;pds-os161/root/.gdbinit, in modo da prevedere altre versioni.
+Si può infatti modificare tale file aggiungendo altri comandi per eventuali
+altre versioni. </p>
+
+<p style='margin-left:18.15pt;text-indent:-18.15pt;line-height:115%'>La
+versione di gdb appena descritta corrisponde alla versione “in linea”
+(piuttosto scomoda). SI SCONSIGLIA DECISAMENTE DI USARE QUESTA VERSIONE. MEGLIO
+LE ESECUZIONI CON INTERFACCIA A FINESTRE, DESCRITTE SOTTO:</p>
+
+<p style='margin-left:18.15pt;text-indent:-18.15pt'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Per
+eventuale esecuzione di gdb con interfaccia a finestre, sono disponibili:</p>
+
+<p style='margin-top:5.1pt;margin-right:0cm;margin-bottom:11.9pt;margin-left:
+36.0pt;text-indent:-18.15pt'><span style='font-family:Symbol'>·</span>&nbsp;gdb
+in versione con finestra per il sorgente (è la scelta più elementare/semplice):
+<br>
+<br>
+<i><span style='font-family:"Courier New"'>mips-harvard-os161-gdb –tui kernel</span></i></p>
+
+<p style='margin-top:5.1pt;margin-right:0cm;margin-bottom:11.9pt;margin-left:
+36.0pt;text-indent:-18.15pt'><span lang=EN-US style='font-family:Symbol'>·</span><span
+lang=EN-US>&nbsp;ddd (comando </span><i><span lang=EN-US style='font-family:
+"Courier New"'>ddd</span></i><span lang=EN-US> </span><i><span lang=EN-US
+style='font-family:"Courier New"'>--debugger</span></i><span lang=EN-US>&nbsp; </span><i><span
+lang=EN-US style='font-family:"Courier New"'>mips-harvard-os161-gdb kernel)</span></i></p>
+
+<p style='margin-left:36.0pt;text-indent:-18.15pt'><span style='font-family:
+Symbol'>·</span>&nbsp;<span style='font-family:"Times New Roman","serif"'>l’editor
+</span><i><span style='font-family:"Courier New"'>emacs, </span></i>da cui è
+possibile attivare una finestra di debugger: una volta entrati in emacs
+(comando “emacs”), il debugger si attiva con tools-&gt;Debugger, modificando il
+comando proposto (riga in basso) con:<br>
+<i><span style='font-family:"Courier New"'>mips-harvard-os161-gdb –i=mi kernel</span></i></p>
+
+<p style='margin-left:18.15pt'><i><span style='font-family:"Courier New"'>ATTENZIONE:
+</span></i>nel caso in cui sys161 sia andato in crash, occorre farlo ripartire,
+e ri-connettere il debugger, facendolo ripartire, oppure ri-eseguendo
+semplicemente il comando “dbos161”<i><span style='font-family:"Courier New"'>.</span></i>&nbsp;In
+tal caso, NON E’ NECESSARIO FAR RIPARTIRE <i><span style='font-family:"Courier New"'>mips-harvard-os161-gdb</span></i>,
+MA SOLO sys161. Va comunque, dal debugger, ri-connesso il socket (ad esempio
+rieseguendo “dbos161” o altro comando equivalente, eventualmente aggiunto a
+pds-os161/root/.gdbinit.</p>
+
+<h1><span style='font-family:"Times","serif"'>Modificare il kernel</span></h1>
+
+<p class=MsoNormal style='margin-bottom:14.2pt'><i><u><span style='color:black'>(I
+sorgenti del kernel sono nella cartella os161/os161-base-2.0.2/kern e relative
+sotto-cartelle: si omette in questa parte il prefisso e si indicano i direttori
+a partire da “kern”).</span></u></i></p>
+
+<p class=MsoNormal style='margin-bottom:14.2pt'><span style='color:black'>Una
+nuova versione del kernel implica modifica e/o aggiunta di file sorgenti. Si
+veda la descrizione </span><a
+href="http://www.student.cs.uwaterloo.ca/~cs350/common/WorkingWith161.html">Bulding
+OS/161 (sezioni: “Configure a kernel” e “Compile a kernel”)<span
+style='color:black;text-decoration:none'>. </span></a></p>
+
+<p class=MsoNormal style='margin-bottom:14.2pt'><span style='color:black'>Ogni
+nuova versione del kernel corrisponde a un file di configurazione (scritto in
+maiuscolo) nella cartella os161/os161-base-2.0.2/kern/conf). Nelle vecchie
+versioni di os161 le configurazioni avevano nomi ASSTx (x=0,1,2,3,4, …). Ora si
+propone DUMBVM (o DUMBVM-OPT) per la versione con gestione della memoria
+“dumbvm”, GENERIC (o GENERIC-OPT) per una nuova versione, ad esempio la prima
+su cui lavorare, altri nomi, in funzione del tipo di lavoro effettuato.</span></p>
+
+<p class=MsoNormal style='margin-bottom:14.2pt'><span style='color:black'>Si
+consiglia di iniziare su DUMBVM, per la prima esecuzione, senza modifiche, per
+passare poi a una nuova versione, chiamata HELLO. Il primo lavoro consiste
+nell’inserire un messaggio aggiuntivo su video al bootstrap. Per fare questo,
+si chiede di aggiungere un file hello.c nel direttorio kern/main, nel quale
+creare una funzione hello(), che scrive un messaggio su video utilizzando la
+funzione kprintf.</span></p>
+
+<p class=MsoNormal style='margin-bottom:14.2pt'><span style='color:black'>Si
+riportano qui le istruzioni dettagliate</span></p>
+
+<p class=MsoNormal style='margin-bottom:14.2pt;line-height:115%'><span
+lang=EN-US style='color:black'>Creare un file </span><span lang=EN-US
+style='font-family:"Courier New";color:black'>kern/main/hello.c </span></p>
+
+<p class=MsoNormal style='margin-bottom:14.2pt;line-height:115%'><span
+style='font-family:"Times New Roman","serif";color:black'>Scrivere nel file
+appena creato una funzione </span><span style='font-family:"Courier New";
+color:black'>hello</span><span style='color:black'> che utilizza </span><span
+style='font-family:"Courier New";color:black'>kprintf</span><span
+style='color:black'>() per scrivere un messaggio a video. Pur se non necessario,
+si consiglia di creare un file </span><span style='font-family:"Courier New";
+color:black'>kern/include/hello.h</span><span style='color:black'>, che
+contenga il prototipo della funzione hello. ATTENZIONE: il compilatore C usato
+necessita parametro void nel caso di assenza di parametri. Ad esempio, il
+prototipo di hello potrebbe essere</span></p>
+
+<p class=MsoNormal style='margin-bottom:14.2pt;line-height:115%'><span
+style='font-family:"Courier New";color:black'>void hello (void); </span></p>
+
+<p class=MsoNormal style='margin-bottom:14.2pt;line-height:115%'><span
+style='font-family:"Times New Roman","serif";color:black'>Modificare</span><span
+style='font-family:"Courier New";color:black'> kern/main/main.c </span><span
+style='color:black'>inserendo una chiamata a hello</span><span
+style='font-family:"Courier New";color:black'>().</span><span style='font-family:
+"Times New Roman","serif";color:black'> Per utilizzare correttamente </span><span
+style='font-family:"Courier New";color:black'>kprintf</span><span
+style='font-family:"Times New Roman","serif";color:black'>, è necessario
+includere </span><span style='font-family:"Courier New";color:black'>types.h</span><span
+style='font-family:"Times New Roman","serif";color:black'> e </span><span
+style='font-family:"Courier New";color:black'>lib.h</span><span
+style='font-family:"Times New Roman","serif";color:black'>.</span></p>
+
+<p class=MsoNormal style='margin-bottom:14.2pt;line-height:115%'><span
+style='font-family:"Times New Roman","serif";color:black'>L’eventuale
+inclusione di </span><span style='font-family:"Courier New";color:black'>hello.h
+</span><span style='font-family:"Times New Roman","serif";color:black'>(</span><span
+style='font-family:"Courier New";color:black'>#include “hello.h”</span><span
+style='font-family:"Times New Roman","serif";color:black'>) va fatta sia in </span><span
+style='font-family:"Courier New";color:black'>main.c</span><span
+style='font-family:"Times New Roman","serif";color:black'> che in </span><span
+style='font-family:"Courier New";color:black'>hello.c</span><span
+style='font-family:"Times New Roman","serif";color:black'>.</span></p>
+
+<p class=MsoNormal style='margin-bottom:14.2pt'><span style='font-family:"Times New Roman","serif";
+color:black'>Modificare</span><span style='font-family:"Courier New";
+color:black'> kern/conf/conf.kern </span><span style='font-family:"Times New Roman","serif";
+color:black'>inserendo il nuovo file </span><span style='font-family:"Courier New";
+color:black'>hello.c. </span><span style='font-family:"Times New Roman","serif";
+color:black'>nell’elenco dei file. </span><span lang=EN-US style='font-family:
+"Times New Roman","serif";color:black'>Ad esempio</span></p>
+
+<p class=MsoNormal style='margin-top:5.0pt;margin-right:0cm;margin-bottom:14.2pt;
+margin-left:35.45pt'><span lang=EN-US style='font-family:"Courier New";
+color:black'>file&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; main/main.c</span></p>
+
+<p class=MsoNormal style='margin-top:5.0pt;margin-right:0cm;margin-bottom:14.2pt;
+margin-left:35.45pt'><span lang=EN-US style='font-family:"Courier New";
+color:black'>file&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; main/menu.c</span></p>
+
+<p class=MsoNormal style='margin-top:5.0pt;margin-right:0cm;margin-bottom:14.2pt;
+margin-left:35.45pt'><b><i><span lang=EN-US style='font-family:"Courier New";
+color:black'>defoption hello</span></i></b></p>
+
+<p class=MsoNormal style='margin-top:5.0pt;margin-right:0cm;margin-bottom:14.2pt;
+margin-left:35.45pt'><b><i><span lang=EN-US style='font-family:"Courier New";
+color:black'>optfile&nbsp;&nbsp; hello&nbsp;&nbsp; main/hello.c</span></i></b></p>
+
+<p class=MsoNormal style='margin-top:5.0pt;margin-right:0cm;margin-bottom:14.2pt;
+margin-left:35.45pt'><span lang=EN-US style='color:black'>&nbsp;</span></p>
+
+<p class=MsoNormal style='margin-bottom:14.2pt'><span style='font-size:12.0pt;
+color:black'>Riassumendo, al fine di chiamare in main.c una funzione presente
+in hello.c, è necessario (in main.c) il prototipo di tale funzione. Questo può
+essere fatto in modo esplicito, oppure (soluzione migliore) includendo al file </span><span
+style='font-family:"Courier New";color:black'>kern/include/hello.h.</span></p>
+
+<p class=MsoNormal style='margin-bottom:14.2pt'><span style='color:black'>Riconfigurare
+e ricompilare il sistema</span></p>
+
+<p class=MsoNormal style='margin-bottom:14.2pt'><span style='color:black'>CONFIGURAZIONE</span></p>
+
+<p class=MsoNormal style='margin-top:5.0pt;margin-right:0cm;margin-bottom:14.2pt;
+margin-left:35.45pt'><span style='font-size:12.0pt;color:black'>In kern/conf
+generare il file HELLO (ad es. copiando DUMBVM: ATTENZIONE, <b>aggiungere a
+tale file una riga “options hello”</b>!) e dare il commando</span></p>
+
+<p class=MsoNormal style='margin-top:5.0pt;margin-right:0cm;margin-bottom:14.2pt;
+margin-left:35.45pt'><span style='font-size:12.0pt;color:black'>./config HELLO</span></p>
+
+<p class=MsoNormal style='margin-bottom:14.2pt'><span style='font-family:"Times New Roman","serif";
+color:black'>Per fare in modo che </span><span style='font-family:"Courier New";
+color:black'>hello.c</span><span style='font-family:"Times New Roman","serif";
+color:black'> e la chiamate a </span><span style='font-family:"Courier New";
+color:black'>hello</span><span style='font-family:"Times New Roman","serif";
+color:black'>() siano visibili/attive solo con l’opzione di configurazione hello,
+sono quindi necessari i passi seguenti:</span></p>
+
+<p class=MsoListParagraph style='margin-bottom:14.2pt;text-indent:-18.0pt'><span
+style='font-family:Symbol'>·</span><span style='font-size:7.0pt;font-family:
+"Times New Roman","serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='font-family:"Times New Roman","serif"'>Usare l’opzione hello, definita
+in </span><span style='font-family:"Courier New"'>conf.kern</span><span
+style='font-family:"Times New Roman","serif"'> e rendere hello.c file opzionale
+(abilitato da tale opzione). Come conseguenza sarò generato automaticamente un
+file opt-hello.h, contenente </span><span style='font-family:"Courier New"'>#define
+OPT_HELLO 1 </span><span style='font-family:"Times New Roman","serif"'>oppure </span><span
+style='font-family:"Courier New"'>#define OPT_HELLO 0</span></p>
+
+<p class=MsoListParagraph style='margin-bottom:14.2pt;text-indent:-18.0pt'><span
+style='font-family:Symbol'>·</span><span style='font-size:7.0pt;font-family:
+"Times New Roman","serif"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+style='font-family:"Times New Roman","serif"'>Rendere opzionali le istruzioni
+di altri file che utilizzino hello:</span></p>
+
+<p class=MsoListParagraph style='margin-top:5.0pt;margin-right:0cm;margin-bottom:
+14.2pt;margin-left:72.0pt;text-indent:-18.0pt'><span style='font-family:"Courier New"'>o</span><span
+style='font-size:7.0pt;font-family:"Times New Roman","serif"'>&nbsp;&nbsp;&nbsp;
+</span><span style='font-family:"Times New Roman","serif"'>Il file </span><span
+style='font-family:"Courier New"'>hello.h</span><span style='font-family:"Times New Roman","serif"'>
+<br>
+<br>
+</span><span style='font-family:"Courier New"'>#ifndef _HELLO_H_<br>
+#define _HELLO_H_<br>
+<br>
+void hello(void);<br>
+<br>
+#endif<br>
+</span><span style='font-family:"Times New Roman","serif"'><br>
+potrebbe rendere opzionale il suo contenuto come segue<br>
+<br>
+</span><span style='font-family:"Courier New"'>#ifndef _HELLO_H_<br>
+#define _HELLO_H_<br>
+<br>
+<b>#include “opt-hello.h”<br>
+#if OPT_HELLO<br>
+</b>void hello(void);<br>
+<b>#endif<br>
+</b><br>
+#endif</span></p>
+
+<p class=MsoListParagraph style='margin-top:5.0pt;margin-right:0cm;margin-bottom:
+14.2pt;margin-left:72.0pt;text-indent:-18.0pt'><span style='font-family:"Courier New"'>o</span><span
+style='font-size:7.0pt;font-family:"Times New Roman","serif"'>&nbsp;&nbsp;&nbsp;
+</span><span style='font-family:"Times New Roman","serif"'>La chiamata a
+hello() nel main può esser resa opzionale come segue<br>
+</span><span style='font-family:"Courier New"'>#if OPT_HELLO<br>
+&nbsp;&nbsp; hello();<br>
+#endif</span></p>
+
+<p class=MsoNormal style='margin-bottom:14.2pt'><span style='font-size:12.0pt;
+color:black'>COMPILAZIONE</span></p>
+
+<p class=MsoNormal style='margin-top:5.0pt;margin-right:0cm;margin-bottom:14.2pt;
+margin-left:35.45pt'><span style='font-size:12.0pt;color:black'>In
+kern/compile/HELLO effettuare</span></p>
+
+<p class=MsoNormal style='margin-top:5.0pt;margin-right:0cm;margin-bottom:14.2pt;
+margin-left:35.45pt'><span style='font-size:12.0pt;color:black'>bmake depend</span></p>
+
+<p class=MsoNormal style='margin-top:5.0pt;margin-right:0cm;margin-bottom:14.2pt;
+margin-left:35.45pt'><span style='font-size:12.0pt;color:black'>bmake</span></p>
+
+<p class=MsoNormal style='margin-top:5.0pt;margin-right:0cm;margin-bottom:14.2pt;
+margin-left:35.45pt'><span style='font-size:12.0pt;color:black'>bmake install</span></p>
+
+<p class=MsoNormal style='margin-bottom:12.0pt'>&nbsp;</p>
+
+<p class=MsoNormal style='margin-bottom:14.2pt'><span style='font-size:12.0pt;
+color:black'>Nel caso di errori di compilazione, è sufficiente ripetere bmake.
+Provare a eseguire os161 per verificare che al bootstrap sia stampato il
+messaggio.</span></p>
+
+<h1><span style='font-family:"Times","serif"'>Programmazione concorrente con
+OS161 </span></h1>
+
+<p class=MsoNoSpacing style='margin-bottom:14.2pt'><span style='font-size:12.0pt'>Realizzare
+questo esercizio con configurazione: THREADS, anziche’ DUMBVM o HELLO: Si
+consiglia di tentare una configurazione nuova solamente come esercizio,
+nonostante non ve ne sia necessità (non si modifica nessun sorgente).</span></p>
+
+<p class=MsoNormal style='margin-bottom:14.2pt'><b><span style='font-size:13.0pt;
+font-family:"Times New Roman","serif";color:black'>Built-in thread tests </span></b></p>
+
+<p class=MsoNormal style='margin-bottom:14.2pt'><span style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>Quando si avvia os161, tra
+le opzioni disponibili dal menu, si possono avviare i test per thread. Si
+tratta di funzioni NON caricate come eseguibili separati, ma direttamente
+linkati nel kernel (in pratica, quindi, di parti del kernel).<br>
+I programmi di test dei thread usano sincronizzazione basata su semafori. Si
+può tentare di tracciarne l’esecuzione in GDB, per verificare come lavora lo
+scheduler, cone sono creati i thread, e cosa succede al context-switch. Per far
+questo, si consiglia di tracciare funzioni quali thread_create thread_fork, thread_yield,
+…</span></p>
+
+<p class=MsoNormal style='margin-bottom:14.2pt'><span style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>Il test tt1 stampa i numeri
+da 0 a 7 ad ogni loop del thread, tt2 stampa solo ad inizio e fine dei thread
+(serve a dimostrare che lo scheduler non genera starvation). I threads sono avviati
+e girano per un po’ di iterazioni. Il test tt3 utilizza semafori, che nella
+versione base di OS161 non funzionano correttamente: il problema sarà
+affrontato in un futuro laboratorio.</span></p>
+
+<p class=MsoNormal style='margin-bottom:14.2pt'><span style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>Il sorgente di avvio dei
+test si trova in menu.c</span></p>
+
+<p class=MsoNormal style='margin-bottom:14.2pt'><b><span style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>Per fare debug di programmi
+con thread</span></b></p>
+
+<p class=MsoNormal style='margin-bottom:14.2pt'><span style='font-size:12.0pt;
+font-family:"Times New Roman","serif";color:black'>Siccome la funzione
+thread_yield viene chiamata a intervalli random, per generare (e farne il
+debug) sequenze di esecuzione ripetibili si consiglia di usare un seme per
+inizializzazione fissa del generatore di numeri casuali (direttiva “random” in
+sys161.conf). Passare ad autoseed sono quando tutto funziona.</span></p>
+
+<h1>Eseguire un programma utente in OS161</h1>
+<p>Chiamare la nuova versione del sistema USERP.</p>
+
+<p>OS/161 contiene un insieme di programmi utente già predisposti per
+l'esecuzione sul kernel. Questo insieme include programmi di utilità comuni in
+ambito UNIX, quali <tt>ls</tt> and <tt>cat</tt>, oltre a vari altri programmi
+di test. &nbsp;I sorgenti di tali programmi si trovano, a partire dalla radice
+dei sorgenti (<tt>os161/os161-base-2.0.2</tt>), in <tt>userland/{bin,sbin,testbin}</tt>.
+</p>
+
+<p>Molti dei programmi sopra citati non sono in grado di funzionare
+correttamente, &nbsp;con OS161 nella forma iniziale, in quanto le “system
+calls” chiamate non sono ancora implementate. Per farli funzionare
+correttamente occorre quindi implementare tali system calls.</p>
+
+<p>Per creare gli eseguibili dei programmi utente occorre, &nbsp;a partire dai
+direttori dei file sorgenti, eseguire</p>
+
+<p><b>bmake -> bmake install</b></p>
+
+<p>Gli eseguibili creati, in formato ELF, sono installati nel direttorio <tt>pds-os161/root/</tt>
+nei sotto-direttori <tt>bin</tt>, <tt>sbin</tt> e <tt>testbin</tt>, rispettivamente.
+Un insieme di programmi eseguibili già predisposti è presente in tali
+direttori.</p>
+
+<p>Obiettivo iniziale del laboratorio è analizzare la fase di “load” di un
+eseguibile, sino all'avvio dell'esecuzione, NONOSTANTE il programma non funzioni
+poi correttamente (nella seconda parte del laboratorio si realizzeranno due
+system call in grado di supportare INPUT e OUTPUT, permettendo quindi
+l'esecuzione completa di alcuni programmi di test).</p>
+
+<p>Per analizzare la fase di load e avvio dell'esecuzione di un programma di
+test, &nbsp;occorre attivare il programma dal menu di os161, mediante il
+comando “p &lt;programma&gt;”, ad esempio “<span style='font-family:"Courier New"'>p
+testbin/palin”</span>, “<span style='font-family:"Courier New"'>p sbin/reboot”</span>,
+dopo aver impostato uno o più breakpoints del debugger, sulle funzioni che
+eseguono tali operazioni. <span lang=EN>Si consiglia, ad esempio, di mettere
+breakpoints su:</span></p>
+
+<p><span lang=EN style='font-family:"Courier New"'>common_prog,
+&nbsp;thread_fork, &nbsp;thread_startup, &nbsp;cmd_progthread,
+&nbsp;runprogram, &nbsp;load_elf,</span><span lang=EN> ...</span></p>
+
+<p>Si analizzi, in particolare, la fase di attivazione di un nuovo thread e di
+caricamento del file ELF. &nbsp;Si determini a quali indirizzi di memoria (e
+come) vengono caricate le parti del file ELF. A tale scopo, si noti che in
+varie parti del codice sorgente di kernel, compaiono istruzioni del tipo
+DEBUG(...), che eseguono eventuali kprintf, controllate dal valore della
+variabile globale dbflags. &nbsp;Per la definizione completa dei valori da
+assegnare a dbflags, si veda il file <tt>kern/include/lib.h</tt><tt><span
+style='font-family:"Times New Roman","serif"'>.</span> </tt><tt><span
+style='font-family:"Times New Roman","serif"'>Se ad esempio, si volessero
+attivare le DEBUG in </span>load_segment</tt><tt><span style='font-family:"Times New Roman","serif"'>,
+occorrerebbe attivare, in dbflags, il flag DB_EXEC, definito come 0x040. A tale
+scopo, si può ad esempio usare l'istruzione di gdb: set dbflags = 0x040.</span></tt></p>
+
+<p><tt><span style='font-family:"Times New Roman","serif"'>Utilizzando quindi
+le istruzioni DEBUG, opportunamente attivate in GDB, si chiede pertanto di
+esaminare l'esecuzione di </span>load_elf, </tt><tt><span style='font-family:
+"Times New Roman","serif"'>di determinare come viene predisposto lo spazio
+degli indirizzi del thread in esecuzione (segmento di codice, dati, e stack) e
+come viene attivata l'esecuzione del programma in user-mode.</span></tt></p>
+
+<p>Si provi inoltre a verificare quale/quanta memoria viene allocata per il
+thread in esecuzione, e quale di questa memoria viene rilasciata al termine di
+tale esecuzione. Si modifichi la funzione <span style='font-family:"Courier New"'>load_elf</span>
+in modo tale che vengano stampati a video le dimensioni e gli indirizzi logici
+e fisici di partenza dei segmenti di memoria virtuale e dello stack.</p>
+
+<p>Quale funzione occorrerebbe modificare per rilasciare tutta la memoria
+utilizzata? Sarebbe possibile una minima modifica al kernel tale da
+ripristinare lo stato della memoria precedente all'esecuzione del thread? 
+
+<spacer type=BLOCK align=BOTTOM width=104 height=16>
+
+</p>
+
+<h1>Scrivere una nuova system call in OS161 (SYSCALL)</h1>
+
+<p>La funzione principale di un kernel è quella di fornire il supporto per
+programmi user-level. Tale supporto è in genere fornito tramite le &quot;system
+calls&quot;. Si noti che un programma utente viene attivato dal menu di os161
+mediante il comando “p programma”, ad esempio “<span style='font-family:"Courier New"'>p
+testbin/palin”</span>, “<span style='font-family:"Courier New"'>p sbin/reboot”</span>.</p>
+
+<p>Os161, nella versione base, fornisce solo 2 system call (<span
+style='font-family:"Courier New"'>reboot</span> e <span style='font-family:
+"Courier New"'>__time</span>).&nbsp; Ad esempio, la system call <span
+style='font-family:"Courier New"'>reboot()</span>, viene implementata dalla
+funzione di kernel &nbsp;<span style='font-family:"Courier New"'>sys_reboot()</span>,
+&nbsp;in <span style='font-family:"Courier New"'>main.c</span>. &nbsp;Si
+ricorda che una system call permette a un programma (in modalità user) di
+richiedere un servizio al kernel, mediante una trap che attiva la funzione <span
+style='font-family:"Courier New"'>syscall()</span>.</p>
+
+<p>In GDB, se si vuole mettere un breakpoint su <span style='font-family:"Courier New"'>sys_reboot</span>
+e attivarla, basta (dopo aver messo il break point e aver fato ripartire il
+kernel (ad esempio con i comandi GDB “<i>break sys_reboot”</i> e “<i>continue”)</i>
+chiamare il programma <span style='font-family:"Courier New"'>sbin/reboot</span>
+(comando “p sbin/reboot”). Una volta che gdb si trova in <span
+style='font-family:"Courier New"'>sys_reboot()</span>, usare <span
+style='font-family:"Courier New"'>backtrace</span>, oppure <span
+style='font-family:"Courier New"'>up/down</span>, per localizzare la sequenza delle
+chiamate. &nbsp;In breve, la funzione utente <span style='font-family:"Courier New"'>reboot()</span>,
+&nbsp;attiverà indirettamente una trap di sistema, che chiamerà la funzione <span
+style='font-family:"Courier New"'>syscall()</span> (file <span
+style='font-family:"Courier New"'>kern/arch/mips/syscall.c</span>), la quale,
+&nbsp;mediante un costrutto <span style='font-family:"Courier New"'>switch/case</span>,
+&nbsp;attiverà la <span style='font-family:"Courier New"'>sys_reboot()</span>.
+&nbsp;</p>
+
+<p>A questo punto è possible tentare di creare una nuova system call. Per
+generare una nuova system call occorre:</p>
+
+<p style='margin-left:18.0pt;text-indent:-18.0pt'><span lang=EN
+style='font-family:Symbol'>·</span>&nbsp;&nbsp;&nbsp;&nbsp;creare nuove
+funzioni utente, oppure utilizzarne di esistenti (ma ancora prive di supporto,
+in os161 base). Nel caso specifico, &nbsp;si consiglia di utilizzare le
+funzioni <span style='font-family:"Courier New"'>write</span> e <span
+style='font-family:"Courier New"'>read,</span> &nbsp;che vengono indirettamente
+richiamata da <span style='font-family:"Courier New"'>printf</span> e <span
+style='font-family:"Courier New"'>scanf</span>.</p>
+
+<p style='margin-left:18.0pt;text-indent:-18.0pt'><span lang=EN
+style='font-family:Symbol'>·</span>&nbsp;&nbsp;&nbsp;&nbsp;Generare nuove
+system call da associare alle funzione utente. </p>
+
+<p style='margin-left:72.0pt;text-indent:-18.0pt'><span style='font-family:
+"Courier New"'>o</span>&nbsp;&nbsp; Occorre un codice intero (si veda il file <span
+style='font-family:"Courier New"'>kern/include/kern/syscall.h</span>), da
+utilizzare nel costrutto <span style='font-family:"Courier New"'>switch/case</span>
+(in <span style='font-family:"Courier New"'>syscall()</span>) visto in
+precedenza (le costanti <span style='font-family:"Courier New"'>SYS_read</span>
+e <span style='font-family:"Courier New"'>SYS_write</span> sono già definite (<span
+style='font-family:"Courier New"'>50 </span>e <span style='font-family:"Courier New"'>55</span>)
+e quindi utilizzabili).</p>
+
+<p style='margin-left:72.0pt;text-indent:-18.0pt'><span style='font-family:
+"Courier New"'>o</span>&nbsp;&nbsp; Occorre una funzione da richiamare, nel
+costrutto switch. &nbsp;Utilizzando le convenzioni già utilizzate, si consiglia
+di generare (in analogia a <span style='font-family:"Courier New"'>sys_reboot</span>)
+le funzioni <span style='font-family:"Courier New"'>sys_write() e</span> <span
+style='font-family:"Courier New"'>sys_read() </span>(Si consiglia di iniziare
+dalla prima). La funzione <span style='font-family:"Courier New"'>sys_reboot()</span>
+si trova nel file <span style='font-family:"Courier New"'>menu.c</span>, ma si
+consiglia di generare un nuovo sorgente nel direttorio <span style='font-family:
+"Courier New"'>kern/syscall</span> (ad es. <span style='font-family:"Courier New"'>stdio_syscalls.c</span>,
+&nbsp;analogo a <span style='font-family:"Courier New"'>time_syscalls.c</span>),
+&nbsp;nel quale realizzare le funzioni <span style='font-family:"Courier New"'>sys_write()
+</span>e <span style='font-family:"Courier New"'>sys_read(),</span> cominciando
+dalla prima). </p>
+
+<p style='margin-left:72.0pt;text-indent:-18.0pt'><span style='font-family:
+"Courier New"'>o</span>&nbsp;&nbsp; Passaggio dei parametri. La funzione <span
+style='font-family:"Courier New"'>syscall()</span>, &nbsp;attivata da trap,
+&nbsp;riceve come parametro <span style='font-family:"Courier New"'>struct</span>
+<span style='font-family:"Courier New"'>trapframe</span> <span
+style='font-family:"Courier New"'>*tf</span>. &nbsp;La struct puntata contiene,
+tra le altre informazioni, i parametri passati alla <span style='font-family:
+"Courier New"'>write</span> (un file id, un puntatore a una stringa e il numero
+di caratteri da stampare – ATTENZIONE, la stringa non è necessariamente
+terminata da ‘<span style='font-family:"Courier New"'>\0’</span>). Tali
+parametri sono reperibili in <span style='font-family:"Courier New"'>tf-&gt;tf_a0,
+…_a1, …_a2, …_a3</span>. &nbsp;Si vedano le system call già implementate,
+lavorando in modo analogo per <span style='font-family:"Courier New"'>sys_write()e</span>
+<span style='font-family:"Courier New"'>sys_read()</span>. &nbsp;Per conoscere
+i prototipi esatti delle funzioni&nbsp; <span style='font-family:"Courier New"'>write()</span>e
+<span style='font-family:"Courier New"'>read(), </span>usare i comandi (da
+finestra terminale) “<i>man 2 write”</i> e “<i>man 2 read”</i>.</p>
+
+<p style='margin-left:18.0pt;text-indent:-18.0pt'><span lang=EN
+style='font-family:Symbol'>·</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Aggiungere le informazioni necessarie per fare make di un nuovo kernel, e
+realizzarlo:</p>
+
+<p style='margin-left:72.0pt;text-indent:-18.0pt'><span style='font-family:
+"Courier New"'>o</span>&nbsp;&nbsp; Aggiungere il prototipo della sys_write al
+file <span style='font-family:"Courier New"'>kern/include/syscall.h</span>.</p>
+
+<p style='margin-left:72.0pt;text-indent:-18.0pt'><span style='font-family:
+"Courier New"'>o</span>&nbsp;&nbsp; Determinare a quale configurazione si fa
+riferimento in <span style='font-family:"Courier New"'>kern/conf</span> (es
+SYSCALL).</p>
+
+<p style='margin-left:72.0pt;text-indent:-18.0pt'><span style='font-family:
+"Courier New"'>o</span>&nbsp;&nbsp; In <span style='font-family:"Courier New"'>conf.kern</span>
+aggiungere il nuovo file (es. <span style='font-family:"Courier New"'>syscalls/stdio_syscalls.c</span>)</p>
+
+<p style='margin-left:72.0pt;text-indent:-18.0pt'><span style='font-family:
+"Courier New"'>o</span>&nbsp;&nbsp; Rifare il make del kernel</p>
+
+<p style='margin-left:18.0pt;text-indent:-18.0pt'><span lang=EN
+style='font-family:Symbol'>·</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Eseguire (possibilmente in debug) un programma utente che attivi la system
+call. Un esempio è la testbin/palin (sorgenti in <span style='font-family:"Courier New"'>userland/testbin</span>).
+Attenzione, i programmi attivabili da menu come “p testbin/xxx” non supportano
+gli argomenti al main (per abilitarli serve una implementazione della <span
+style='font-family:"Courier New"'>malloc</span>, in quanto le stringhe vanno
+passate dal menu ai thread che mandano in esecuzione (in user space) un file
+eseguibile (elf). Nella versione attuale, quindi, i programmi vanno chiamati
+senza argomenti (quindi non funzionano completamente, o vanno modificati).</p>
+
+<p>Informazioni più dettagliate sulle system calls sono reperibili sul
+documento “understanding system calls”</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

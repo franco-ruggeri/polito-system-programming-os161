@@ -1,0 +1,391 @@
+<html>
+
+<head>
+<meta name=Title content="">
+<meta name=Keywords content="">
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 14 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+@font-face
+	{font-family:"Courier New";
+	panose-1:2 7 3 9 2 2 5 2 4 4;}
+@font-face
+	{font-family:Times;
+	panose-1:2 0 5 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"MS Mincho";}
+@font-face
+	{font-family:"MS Mincho";}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:"Times Roman";
+	panose-1:0 0 5 0 0 0 0 2 0 0;}
+ /* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Times","serif";}
+h1
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Times","serif";
+	font-weight:normal;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;}
+tt
+	{font-family:"Courier New";}
+span.Heading1Char
+	{font-family:Calibri;
+	color:#345A8A;
+	font-weight:bold;}
+p.textbody, li.textbody, div.textbody
+	{margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:0cm;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Times","serif";
+	color:black;}
+p.textbodymsonormal, li.textbodymsonormal, div.textbodymsonormal
+	{margin-right:0cm;
+	margin-left:0cm;
+	font-size:10.0pt;
+	font-family:"Times","serif";}
+p.msochpdefault, li.msochpdefault, div.msochpdefault
+	{margin-right:0cm;
+	margin-left:0cm;
+	font-size:10.0pt;
+	font-family:"Times New Roman";}
+p.titolo1, li.titolo1, div.titolo1
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Times","serif";}
+span.heading1char0
+	{font-family:Calibri;
+	color:#345A8A;
+	font-weight:bold;}
+span.titolo1carattere
+	{font-family:Calibri;
+	color:#365F91;
+	font-weight:bold;}
+.MsoChpDefault
+	{font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+
+<meta name=created content="00:00:00">
+<meta name=changed content="2016-05-30T09:45:58.614000000">
+</head>
+
+<body bgcolor=white lang=EN-US link=blue vlink=purple>
+
+<div class=WordSection1>
+
+<p class=textbody><b><span lang=IT style='font-size:18.0pt'>PS 2019 -
+Laboratorio OS161</span></b></p>
+
+<p class=textbody><span lang=IT>&nbsp;</span></p>
+
+<h1 style='margin-bottom:14.45pt'><b><span lang=IT style='font-size:20.0pt'>Rendere
+eseguibile un programma utente in OS161</span></b></h1>
+
+<p class=textbody><span lang=IT>Il laboratorio può essere considerato come una
+prosecuzione del precedente, per la parte relativa a thread e system calls.</span></p>
+
+<p class=textbody><span lang=IT>I programmi utente OS161, richiamabili mediante
+il comando “p programma”, &nbsp;ad esempio “</span><span lang=IT
+style='font-family:"Courier New"'>p testbin/palin”</span><span lang=IT>, “</span><span
+lang=IT style='font-family:"Courier New"'>p sbin/reboot”,</span><span lang=IT>
+non sono eseguibili in modo corretto, in quanto, nella versione base di OS161,
+manca il supporto per</span></p>
+
+<p class=textbody style='margin-left:36.0pt'><span lang=IT style='font-family:
+Symbol'>·</span><span lang=IT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; le system
+call </span><span lang=IT style='font-family:"Courier New"'>read</span><span
+lang=IT> e </span><span lang=IT style='font-family:"Courier New"'>write</span></p>
+
+<p class=textbody style='margin-left:36.0pt'><span lang=IT style='font-family:
+Symbol'>·</span><span lang=IT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; la system
+call </span><span lang=IT style='font-family:"Courier New"'>exit </span><span
+lang=IT>(</span><span lang=IT style='font-family:"Courier New"'>_exit</span><span
+lang=IT>)</span></p>
+
+<p class=textbody style='margin-left:36.0pt'><span lang=IT style='font-family:
+Symbol'>·</span><span lang=IT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; la gestione
+della memoria virtuale con restituzione della memoria allocata ai processi</span></p>
+
+<p class=textbody style='margin-left:36.0pt'><span lang=IT style='font-family:
+Symbol'>·</span><span lang=IT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gli
+argomenti al </span><span lang=IT style='font-family:"Courier New"'>main</span><span
+lang=IT> (</span><span lang=IT style='font-family:"Courier New"'>argc,</span><span
+lang=IT> </span><span lang=IT style='font-family:"Courier New"'>argv</span><span
+lang=IT>)</span></p>
+
+<p class=textbody><span lang=IT>Le system call </span><span lang=IT
+style='font-family:"Courier New"'>read</span><span lang=IT> e </span><span
+lang=IT style='font-family:"Courier New"'>write</span><span lang=IT>, pur se
+non strettamente necessarie per attivare un processo user, lo diventano nel
+caso in cui tale processo effettui IO (succede in quasi tutti i programmi). I
+programmi di test proposti effettuano in genere output, raramente input, per
+cui risulta più importante il supporto per la</span><span lang=IT
+style='font-family:"Courier New"'> write</span><span lang=IT>.</span></p>
+
+<p class=textbody><span lang=IT>Al termine di un programa (fine del main) si
+chiama (implicitamente) la </span><span lang=IT style='font-family:"Courier New"'>exit</span><span
+lang=IT>, il che provoca un crash del sistema, in quanto non esiste supporto
+per tale operazione. Si chiede di realizzare il supporto &nbsp;per i punti
+precedenti (argomenti al main esclusi), in modo parziale, tale da consentire
+l’esecuzione di un programma utente con semplice IO e rilascio della memoria
+allocata per il processo. NON essendo richiesto il supporto per gli argomenti
+al main, non è detto che tutti i programmi funzionino correttamente. </span></p>
+
+<p class=textbody><span lang=IT>&nbsp;</span></p>
+
+<div style='border:solid windowtext 1.0pt;padding:1.0pt 4.0pt 1.0pt 4.0pt'>
+
+<div style='border:solid windowtext 1.0pt;padding:1.0pt 4.0pt 1.0pt 4.0pt'>
+
+<div style='border:solid windowtext 1.0pt;padding:1.0pt 4.0pt 1.0pt 4.0pt'>
+
+<p class=textbody><b><span lang=IT>NOTA: </span></b></p>
+
+<p class=textbody><span lang=IT>Si consideri la modalità di attivazione di un
+nuovo thread/processo &nbsp;da parte della </span><span lang=IT
+style='font-family:"Courier New"'>menu_execute</span><span lang=IT>,&nbsp; alla
+chiamata di </span><span lang=IT style='font-family:"Courier New"'>cmd_dispatch</span><span
+lang=IT>,&nbsp; per rispondere al comando “p ….”. Questa attiva un nuovo kernel
+thread mediante </span><span lang=IT style='font-family:"Courier New"'>thread_fork,
+</span><span lang=IT>nella funzione </span><span lang=IT style='font-family:
+"Courier New"'>common_prog</span><span lang=IT>. Il thread principale (il
+parent) esce SENZA attendere il termine del thread generato. Il nuovo thread
+esegue la funzione </span><span lang=IT style='font-family:"Courier New"'>cmd_progthread
+</span><span lang=IT>&nbsp;(che a sua volta chiama </span><span lang=IT
+style='font-family:"Courier New"'>runprogram)</span><span lang=IT
+style='font-family:"Times New Roman"'>.</span><span lang=IT style='font-family:
+"Courier New"'> </span><span lang=IT>La funzione </span><span lang=IT
+style='font-family:"Courier New"'>common_prog</span><span lang=IT> crea inoltre
+un descrittore di processo,&nbsp; mediante </span><span lang=IT
+style='font-family:"Courier New"'>proc_create_runprogram</span><span lang=IT>. Nel
+frattempo il thread principale è già tornato al menu, in attesa di un nuovo
+comando in input.</span></p>
+
+</div>
+
+</div>
+
+</div>
+
+<p class=textbody><b><span lang=IT style='font-size:20.0pt'>System calls write
+e read</span></b></p>
+
+<p class=textbody><span lang=IT>Si consiglia di realizzare due funzioni </span><span
+lang=IT style='font-family:"Courier New"'>sys_read</span><span lang=IT> e </span><span
+lang=IT style='font-family:"Courier New"'>sys_write</span><span lang=IT> (con
+parametri che ricalchino i prototipi di </span><span lang=IT style='font-family:
+"Courier New"'>read</span><span lang=IT> e </span><span lang=IT
+style='font-family:"Courier New"'>write</span><span lang=IT>). Le funzioni
+potrebbero,&nbsp; ad esempio,&nbsp; essere realizzare in un file </span><span
+lang=IT style='font-family:"Courier New"'>kern/syscall/file_syscalls.c</span><span
+lang=IT>. </span></p>
+
+<p class=textbody><span lang=IT>Si suggerisce di limitare la realizzazione al
+caso di IO su stdin e stdout (eventualmente stderr), evitando la gestione
+esplicita dei file (proposta in un successivo laboratorio) e ricorrendo invece
+(in quanto si tratta di file testo) alle funzioni </span><span lang=IT
+style='font-family:"Courier New"'>putch</span><span lang=IT> e </span><span
+lang=IT style='font-family:"Courier New"'>getch</span><span lang=IT> (si veda
+ad esempio il loro utilizzo in </span><span lang=IT style='font-family:"Courier New"'>kprintf
+</span><span lang=IT>e </span><span lang=IT style='font-family:"Courier New"'>kgets</span><span
+lang=IT>).</span></p>
+
+<p class=textbody><b><span lang=IT style='font-size:20.0pt'>System call _exit</span></b></p>
+
+<p class=textbody><span lang=IT>Il problema di os161 nella versione base,&nbsp;
+in relazione alla fine di un processo,&nbsp; è legato a due aspetti:</span></p>
+
+<p class=textbody style='margin-left:36.0pt;text-indent:-18.0pt'><span lang=IT
+style='font-family:Symbol'>·</span><span lang=IT style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+lang=IT>Il processo,&nbsp; che termina con </span><span lang=IT
+style='font-family:"Courier New"'>exit</span><span lang=IT>,&nbsp; non ancora
+realizzata, entra nella funzione </span><span lang=IT style='font-family:"Courier New"'>syscall</span><span
+lang=IT>, priva di supporto per </span><span lang=IT style='font-family:"Courier New"'>SYS__exit</span><span
+lang=IT>, il che causa chiamata a “panic”</span></p>
+
+<p class=textbody style='margin-left:36.0pt;text-indent:-18.0pt'><span lang=IT
+style='font-family:Symbol'>·</span><span lang=IT style='font-size:7.0pt;
+font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span
+lang=IT>L’aggiunta di un “</span><span lang=IT style='font-family:"Courier New"'>case
+SYS__exit:</span><span lang=IT>” in </span><span lang=IT style='font-family:
+"Courier New"'>syscall</span><span lang=IT> richiede un supporto minimale per
+l’azione di terminazione di un processo.</span></p>
+
+<p class=textbody><span lang=IT>Il supporto per la _</span><span lang=IT
+style='font-family:"Courier New"'>exit</span><span lang=IT> (chiamata dalla </span><span
+lang=IT style='font-family:"Courier New"'>exit</span><span lang=IT> C) si
+ottiene lavorando in modo simile alle system call </span><span lang=IT
+style='font-family:"Courier New"'>read</span><span lang=IT> e </span><span
+lang=IT style='font-family:"Courier New"'>write</span><span lang=IT>. La
+funzione C </span><span lang=IT style='font-family:"Courier New"'>exit</span><span
+lang=IT> (file </span><span lang=IT style='font-family:"Courier New"'>userland/lib/libc/stdlib/exit.c</span><span
+lang=IT>) riceve un unico parametro intero (il codice di errore/successo). </span></p>
+
+<p class=textbody><span lang=IT>Il suo compito è quello di</span></p>
+
+<p class=textbody style='margin-left:36.0pt'><span lang=IT style='font-family:
+Symbol'>·</span><span lang=IT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mettere
+questo codice nel campo previsto (va aggiunto !) del descrittore di
+processo/thread (</span><span lang=IT style='font-family:"Courier New"'>struct
+thread</span><span lang=IT>, si veda </span><span lang=IT style='font-family:
+"Courier New"'>kern/include/thread.h</span><span lang=IT style='font-family:
+"Times New Roman"'> e/o </span><span lang=IT style='font-family:"Courier New"'>struct
+proc </span><span lang=IT>in </span><span lang=IT style='font-family:"Courier New"'>kern/include/proc.h</span><span
+lang=IT>). Tale codice dovrà eventualmente essere letto da un altro thread.</span></p>
+
+<p class=textbody style='margin-left:36.0pt'><span lang=IT style='font-family:
+Symbol'>·</span><span lang=IT>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Far
+terminare il thread (e il processo) che chiama la </span><span lang=IT
+style='font-family:"Courier New"'>exit</span><span lang=IT>,&nbsp; chiamando la
+funzione </span><span lang=IT style='font-family:"Courier New"'>thread_exit</span><span
+lang=IT> (file </span><span lang=IT style='font-family:"Courier New"'>thread.c</span><span
+lang=IT>), la quale pulisce la struttura dati del thread chiamante e lo manda in
+stato di zombie. Il descrittore del thread non viene distrutto (è quindi ancora
+leggibile da un altro thread). La distruzione vera e propria sarà effettuate
+dalla </span><span lang=IT style='font-family:"Courier New"'>thread_destroy</span><span
+lang=IT>, chiamata dalla </span><span lang=IT style='font-family:"Courier New"'>exorcise</span><span
+lang=IT> alla successiva </span><span lang=IT style='font-family:"Courier New"'>thread_switch</span><span
+lang=IT>. </span></p>
+
+<p class=textbody style='margin-left:36.0pt;text-indent:-18.0pt'><span lang=IT>Al
+momento attuale non si chiede di realizzare il salvataggio dello stato e la,
+Quindi si consiglia una versione ridotta della </span><span lang=IT
+style='font-family:"Courier New"'>exit</span><span lang=IT>.&nbsp; che sia in
+grado quanto meno di attivare la </span><span lang=IT style='font-family:"Courier New"'>as_destroy</span><span
+lang=IT> e la chiusura del thread: si suggerisce a tale scopo di realizzare una
+funzione </span><span lang=IT style='font-family:"Courier New"'>sys__exit(int
+status)</span><span lang=IT> (creando ad esempio un file </span><span lang=IT
+style='font-family:"Courier New"'>kern/syscall/proc_syscalls.c</span><span
+lang=IT> che la contenga). La funzione effettui chiamate ad </span><span
+lang=IT style='font-family:"Courier New"'>as_destroy</span><span lang=IT> e </span><span
+lang=IT style='font-family:"Courier New"'>thread_exit</span><span lang=IT>.</span></p>
+
+<p class=textbody><b><span lang=IT style='font-size:20.0pt'>Gestione della
+memoria virtuale</span></b><span lang=IT> </span></p>
+
+<p class=textbody><span lang=IT>Os161, nella versione base contiene un gestore
+di memoria virtuale che effettua unicamente allocazione contigua di memoria
+reale, senza mai rilasciarla (si veda il file </span><span lang=IT
+style='font-family:"Courier New"'>kern/arch/mips/vm/dumbvm.c</span><span
+lang=IT>).&nbsp; Ad ogni chiamata a </span><span lang=IT style='font-family:
+"Courier New"'>getppages/ram_stealmem </span><span lang=IT>viene allocato un
+nuovo intervallo nella RAM fisica, che non verrà più rilasciato.</span></p>
+
+<p class=textbody><span lang=IT>Si chiede di realizzare un allocatore di
+memoria contigua, che, anziché utilizzare unicamente le funzioni </span><span
+lang=IT style='font-family:"Courier New"'>getppages/ram_stealmem</span><span
+lang=IT> nella versione attuale, le modifichi, mantenendo traccia delle pagine
+(o frame) di RAM occupate e libere. </span></p>
+
+<p class=textbody><span lang=IT>Si consiglia, in questa prima versione,&nbsp;
+di realizzare una “bitmap” o più semplicemente un vettore di flag (interi o
+char). Ciò richiede di modificare la ricerca di RAM libera,&nbsp; da parte di </span><span
+lang=IT style='font-family:"Courier New"'>as_prepare_load</span><span lang=IT>
+e </span><span lang=IT style='font-family:"Courier New"'>alloc_kpages</span><span
+lang=IT> (per inizializzare le struttura dati) e la restituzione di memoria da
+parte de </span><span lang=IT style='font-family:"Courier New"'>as_destroy </span><span
+lang=IT style='font-family:"Times Roman"'>e</span><span lang=IT
+style='font-family:"Courier New"'> free_kpages</span><span lang=IT>. Si
+consiglia di modificare la </span><span lang=IT style='font-family:"Courier New"'>getppages</span><span
+lang=IT> e/o&nbsp; la </span><span lang=IT style='font-family:"Courier New"'>ram_stealmem</span><span
+lang=IT> (per allocare memoria fisica contigua). ATTENZIONE: </span><span
+lang=IT style='font-family:"Courier New"'>getppages </span><span lang=IT>viene
+chiamata sia da </span><span lang=IT style='font-family:"Courier New"'>kmalloc-&gt;alloc_kpages</span><span
+lang=IT> (per allocazione dinamica al kernel) che da </span><span lang=IT
+style='font-family:"Courier New"'>as_prepare_load</span><span lang=IT> per
+allocare memoria ai processi user. </span></p>
+
+<p class=textbody><span lang=IT>&nbsp;</span></p>
+
+<h1><b><span lang=IT style='font-size:13.0pt'>SOLUZIONE PROPOSTA</span></b></h1>
+
+<p class=textbody><span lang=IT>Si forniscono in allegato alcuni file
+(dumbvm.c, syscall.c,&nbsp; file_syscalls.c, proc_syscalls.c, syscall.h) che realizzano
+in parte il lavoro proposto. I file prevedono l’aggiunta dell’opzione
+“syscalls” in conf.kern, che rende opzionali i file </span><span lang=IT
+style='font-family:"Courier New"'>proc_syscalls.c</span><span lang=IT> e </span><span
+lang=IT style='font-family:"Courier New"'>file_syscalls.c</span><span lang=IT>.</span></p>
+
+<p class=textbody><span lang=IT>Si tratta di realizzazioni parziali, per le
+quali sono possibili migliorie e/o alternative. ATTENZIONE: Per un eventuale
+utilizzo occorre collocare il file nelle cartelle corrette e definire l’opzione
+syscalls in conf.kern <i>(come spiegato in precedenza).  <b>Si faccia anche
+riferimento alla lezione del 29/3/2019.</b></i><span> Per fare test/debug del
+programma sviluppato, si suggerisce di eseguire  (con debug e breakpoint sulle
+funzioni di interesse) funzioni che allochino e deallochino memoria, ad esempio
+i test dei thread (t1,tt2,tt3), per kmalloc/kfree, i programmi user per
+generare e liberare address space. </span></span></p>
+
+<p class=textbody><span lang=IT>Si suggeriscono, in particolare, alcuni
+possibili lavori in relazione all’allocatore di memoria:</span></p>
+
+<p class=textbody style='margin-left:36.0pt;text-indent:-18.0pt'><span lang=IT>1.</span><span
+lang=IT style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span lang=IT>Supporto completo per kfree: la versione proposta non
+permette il rilascio della memoria allocata con kfree prima che vm_bootstrap
+attivi le tabelle di allocazione. Si studi una soluzione tale da ovviare a
+questo problema.</span></p>
+
+<p class=textbody style='margin-left:36.0pt;text-indent:-18.0pt'><span lang=IT>2.</span><span
+lang=IT style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span lang=IT>Realizzare varianti dello schema proposto, ad esempio
+ottenere tutta la RAM disponibile al bootstrap, per poi gestire sempre
+allocazione e deallocazione mediante le tabelle.</span></p>
+
+<p class=textbody style='margin-left:36.0pt;text-indent:-18.0pt'><span lang=IT>3.</span><span
+lang=IT style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span lang=IT>Utilizzo di una bitmap vera, anziché un vettore di char,
+per la tabella freeRamFrames. Una bitmap come vettore di bit, viene solitamente
+realizzata come vettore di unsigned int o unsigned long int, e utilizzo di
+opportuni operatori per accedere ai singoli bit (shift e o maschere con
+operatori di bitwise or/and). Una semplice spiegazione su come realizzare
+vettori di bit in C si trova qui: <a
+href="http://www.mathcs.emory.edu/~cheung/Courses/255/Syllabus/1-C-intro/bit-array.html">http://www.mathcs.emory.edu/~cheung/Courses/255/Syllabus/1-C-intro/bit-array.html</a></span></p>
+
+<p class=textbody style='margin-left:36.0pt;text-indent:-18.0pt'><span lang=IT>4.</span><span
+lang=IT style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span lang=IT>Realizzare una funzione che stampi statistiche sulla
+memoria allocata e libera. La funzione venga chiamata mediante un nuovo comando
+(memstats) aggiunto al menu di os161.</span></p>
+
+<p class=textbody style='margin-left:36.0pt;text-indent:-18.0pt'><span lang=IT>5.</span><span
+lang=IT style='font-size:7.0pt;font-family:"Times New Roman"'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span lang=IT>Migliorare il tempo di ricerca di un intervallo libero e/o
+alleggerire i requisiti di mutua esclusione. La versione proposta ha un costo
+lineare di ricerca, in cui si lavora in mutua esclusione. Inoltre, gli accessi
+alla tabella sono effettuati in mutua esclusione. Si consideri la possibilità
+di evitare la mutua esclusione nella funzione </span><span lang=IT
+style='font-family:"Courier New"'>isTableActive</span><span lang=IT>. Si valuti
+l’opportunità di ridurre i requisiti di mutua esclusione per l’accesso alle
+tabelle.</span></p>
+
+</div>
+
+</body>
+
+</html>

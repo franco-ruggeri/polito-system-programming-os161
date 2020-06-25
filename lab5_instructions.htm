@@ -1,0 +1,942 @@
+
+<!-- saved from url=(0160)file:///Volumes/TOSHIBA%20EXT/USER/CABODI/DIDA/PS/pds-2019/laboratorio/lab%205%20-%20OS161_%20system%20calls%20open/close%20e%20read/write/lab-os161-2018-5.html -->
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns:m="http://schemas.microsoft.com/office/2004/12/omml" xmlns:mv="http://macVmlSchemaUri" xmlns="http://www.w3.org/TR/REC-html40"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="Title" content="">
+<meta name="Keywords" content="">
+
+<meta name="ProgId" content="Word.Document">
+<meta name="Generator" content="Microsoft Word 14">
+<meta name="Originator" content="Microsoft Word 14">
+<link rel="File-List" href="file:///Volumes/TOSHIBA%20EXT/USER/CABODI/DIDA/PS/pds-2019/laboratorio/lab%205%20-%20OS161_%20system%20calls%20open/close%20e%20read/write/lab-os161-2018-5_files/filelist.xml">
+<link rel="Edit-Time-Data" href="file:///Volumes/TOSHIBA%20EXT/USER/CABODI/DIDA/PS/pds-2019/laboratorio/lab%205%20-%20OS161_%20system%20calls%20open/close%20e%20read/write/lab-os161-2018-5_files/editdata.mso">
+<!--[if !mso]>
+<style>
+v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style>
+<![endif]--><!--[if gte mso 9]><xml>
+ <o:DocumentProperties>
+  <o:Author>Gianpiero Cabodi</o:Author>
+  <o:LastAuthor>Gianpiero Cabodi</o:LastAuthor>
+  <o:Revision>5</o:Revision>
+  <o:TotalTime>8</o:TotalTime>
+  <o:Created>2019-06-03T06:58:00Z</o:Created>
+  <o:LastSaved>2019-06-03T07:20:00Z</o:LastSaved>
+  <o:Pages>2</o:Pages>
+  <o:Words>767</o:Words>
+  <o:Characters>4378</o:Characters>
+  <o:Company>Politecnico di Torino</o:Company>
+  <o:Lines>36</o:Lines>
+  <o:Paragraphs>10</o:Paragraphs>
+  <o:CharactersWithSpaces>5135</o:CharactersWithSpaces>
+  <o:Version>14.0</o:Version>
+ </o:DocumentProperties>
+ <o:OfficeDocumentSettings>
+  <o:AllowPNG/>
+ </o:OfficeDocumentSettings>
+</xml><![endif]-->
+<link rel="themeData" href="file:///Volumes/TOSHIBA%20EXT/USER/CABODI/DIDA/PS/pds-2019/laboratorio/lab%205%20-%20OS161_%20system%20calls%20open/close%20e%20read/write/lab-os161-2018-5_files/themedata.xml">
+<!--[if gte mso 9]><xml>
+ <w:WordDocument>
+  <w:Zoom>276</w:Zoom>
+  <w:SpellingState>Clean</w:SpellingState>
+  <w:GrammarState>Clean</w:GrammarState>
+  <w:TrackMoves>false</w:TrackMoves>
+  <w:TrackFormatting/>
+  <w:ValidateAgainstSchemas/>
+  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
+  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
+  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
+  <w:DoNotPromoteQF/>
+  <w:LidThemeOther>EN-US</w:LidThemeOther>
+  <w:LidThemeAsian>X-NONE</w:LidThemeAsian>
+  <w:LidThemeComplexScript>X-NONE</w:LidThemeComplexScript>
+  <w:Compatibility>
+   <w:SplitPgBreakAndParaMark/>
+  </w:Compatibility>
+  <m:mathPr>
+   <m:mathFont m:val="Cambria Math"/>
+   <m:brkBin m:val="before"/>
+   <m:brkBinSub m:val="&#45;-"/>
+   <m:smallFrac m:val="off"/>
+   <m:dispDef/>
+   <m:lMargin m:val="0"/>
+   <m:rMargin m:val="0"/>
+   <m:defJc m:val="centerGroup"/>
+   <m:wrapIndent m:val="1440"/>
+   <m:intLim m:val="subSup"/>
+   <m:naryLim m:val="undOvr"/>
+  </m:mathPr></w:WordDocument>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <w:LatentStyles DefLockedState="false" DefUnhideWhenUsed="true"
+  DefSemiHidden="true" DefQFormat="false" DefPriority="99"
+  LatentStyleCount="276">
+  <w:LsdException Locked="false" Priority="0" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Normal"/>
+  <w:LsdException Locked="false" Priority="9" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="heading 1"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 2"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 3"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 4"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 5"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 6"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 7"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 8"/>
+  <w:LsdException Locked="false" Priority="9" QFormat="true" Name="heading 9"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 1"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 2"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 3"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 4"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 5"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 6"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 7"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 8"/>
+  <w:LsdException Locked="false" Priority="39" Name="toc 9"/>
+  <w:LsdException Locked="false" Priority="35" QFormat="true" Name="caption"/>
+  <w:LsdException Locked="false" Priority="10" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Title"/>
+  <w:LsdException Locked="false" Priority="1" Name="Default Paragraph Font"/>
+  <w:LsdException Locked="false" Priority="11" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Subtitle"/>
+  <w:LsdException Locked="false" Priority="22" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Strong"/>
+  <w:LsdException Locked="false" Priority="20" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Emphasis"/>
+  <w:LsdException Locked="false" Priority="59" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Table Grid"/>
+  <w:LsdException Locked="false" UnhideWhenUsed="false" Name="Placeholder Text"/>
+  <w:LsdException Locked="false" Priority="1" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="No Spacing"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 1"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 1"/>
+  <w:LsdException Locked="false" UnhideWhenUsed="false" Name="Revision"/>
+  <w:LsdException Locked="false" Priority="34" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="List Paragraph"/>
+  <w:LsdException Locked="false" Priority="29" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Quote"/>
+  <w:LsdException Locked="false" Priority="30" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Intense Quote"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 1"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 1"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 1"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 1"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 1"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 1"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 1"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 2"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 2"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 2"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 2"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 2"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 2"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 2"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 2"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 3"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 3"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 3"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 3"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 3"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 3"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 3"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 3"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 4"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 4"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 4"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 4"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 4"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 4"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 4"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 4"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 5"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 5"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 5"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 5"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 5"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 5"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 5"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 5"/>
+  <w:LsdException Locked="false" Priority="60" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="61" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light List Accent 6"/>
+  <w:LsdException Locked="false" Priority="62" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Light Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="63" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="64" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Shading 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="65" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="66" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium List 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="67" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 1 Accent 6"/>
+  <w:LsdException Locked="false" Priority="68" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 2 Accent 6"/>
+  <w:LsdException Locked="false" Priority="69" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Medium Grid 3 Accent 6"/>
+  <w:LsdException Locked="false" Priority="70" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Dark List Accent 6"/>
+  <w:LsdException Locked="false" Priority="71" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Shading Accent 6"/>
+  <w:LsdException Locked="false" Priority="72" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful List Accent 6"/>
+  <w:LsdException Locked="false" Priority="73" SemiHidden="false"
+   UnhideWhenUsed="false" Name="Colorful Grid Accent 6"/>
+  <w:LsdException Locked="false" Priority="19" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Subtle Emphasis"/>
+  <w:LsdException Locked="false" Priority="21" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Intense Emphasis"/>
+  <w:LsdException Locked="false" Priority="31" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Subtle Reference"/>
+  <w:LsdException Locked="false" Priority="32" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Intense Reference"/>
+  <w:LsdException Locked="false" Priority="33" SemiHidden="false"
+   UnhideWhenUsed="false" QFormat="true" Name="Book Title"/>
+  <w:LsdException Locked="false" Priority="37" Name="Bibliography"/>
+  <w:LsdException Locked="false" Priority="39" QFormat="true" Name="TOC Heading"/>
+ </w:LatentStyles>
+</xml><![endif]-->
+<style>
+<!--
+ /* Font Definitions */
+@font-face
+	{font-family:"Courier New";
+	panose-1:2 7 3 9 2 2 5 2 4 4;
+	mso-font-charset:0;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:-536859905 -1073711037 9 0 511 0;}
+@font-face
+	{font-family:Times;
+	panose-1:2 0 5 0 0 0 0 0 0 0;
+	mso-font-alt:"Times Roman";
+	mso-font-charset:77;
+	mso-generic-font-family:roman;
+	mso-font-format:other;
+	mso-font-pitch:variable;
+	mso-font-signature:3 0 0 0 1 0;}
+@font-face
+	{font-family:"MS Mincho";
+	mso-font-charset:78;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:1 134676480 16 0 131072 0;}
+@font-face
+	{font-family:"MS Mincho";
+	mso-font-charset:78;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:1 134676480 16 0 131072 0;}
+@font-face
+	{font-family:"Lucida Grande";
+	panose-1:2 11 6 0 4 5 2 2 2 4;
+	mso-font-charset:0;
+	mso-generic-font-family:auto;
+	mso-font-pitch:variable;
+	mso-font-signature:-520090897 1342218751 0 0 447 0;}
+ /* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-parent:"";
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"MS Mincho";
+	mso-fareast-theme-font:minor-fareast;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;
+	color:windowtext;}
+h1
+	{mso-style-priority:9;
+	mso-style-unhide:no;
+	mso-style-qformat:yes;
+	mso-style-link:"Heading 1 Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	mso-outline-level:1;
+	font-size:24.0pt;
+	font-family:"Times","serif";
+	mso-fareast-font-family:"MS Mincho";
+	mso-fareast-theme-font:minor-fareast;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;
+	color:windowtext;
+	font-weight:bold;}
+a:link, span.MsoHyperlink
+	{mso-style-noshow:yes;
+	mso-style-priority:99;
+	color:blue;
+	text-decoration:underline;
+	text-underline:single;}
+a:visited, span.MsoHyperlinkFollowed
+	{mso-style-noshow:yes;
+	mso-style-priority:99;
+	color:purple;
+	text-decoration:underline;
+	text-underline:single;}
+p
+	{mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"MS Mincho";
+	mso-fareast-theme-font:minor-fareast;
+	color:black;}
+tt
+	{mso-style-noshow:yes;
+	mso-style-priority:99;
+	font-family:"Courier New";
+	mso-ascii-font-family:"Courier New";
+	mso-fareast-font-family:"MS Mincho";
+	mso-fareast-theme-font:minor-fareast;
+	mso-hansi-font-family:"Courier New";
+	mso-bidi-font-family:Courier;}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-link:"Balloon Text Char";
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:9.0pt;
+	font-family:"Lucida Grande";
+	mso-fareast-font-family:"MS Mincho";
+	mso-fareast-theme-font:minor-fareast;
+	color:windowtext;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-priority:9;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"Heading 1";
+	mso-ansi-font-size:16.0pt;
+	mso-bidi-font-size:16.0pt;
+	font-family:Calibri;
+	mso-ascii-font-family:Calibri;
+	mso-ascii-theme-font:major-latin;
+	mso-fareast-font-family:"MS Gothic";
+	mso-fareast-theme-font:major-fareast;
+	mso-hansi-font-family:Calibri;
+	mso-hansi-theme-font:major-latin;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:major-bidi;
+	color:#345A8A;
+	mso-themecolor:accent1;
+	mso-themeshade:181;
+	font-weight:bold;}
+p.textbody, li.textbody, div.textbody
+	{mso-style-name:textbody;
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-unhide:no;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	margin-bottom:0cm;
+	margin-left:0cm;
+	margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"MS Mincho";
+	mso-fareast-theme-font:minor-fareast;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;
+	color:black;}
+p.textbodymsonormal, li.textbodymsonormal, div.textbodymsonormal
+	{mso-style-name:textbodymsonormal;
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-unhide:no;
+	mso-margin-top-alt:auto;
+	margin-right:0cm;
+	mso-margin-bottom-alt:auto;
+	margin-left:0cm;
+	mso-pagination:widow-orphan;
+	font-size:12.0pt;
+	font-family:"Times New Roman";
+	mso-fareast-font-family:"MS Mincho";
+	mso-fareast-theme-font:minor-fareast;
+	mso-bidi-font-family:"Times New Roman";
+	mso-bidi-theme-font:minor-bidi;
+	color:black;}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-unhide:no;
+	mso-style-locked:yes;
+	mso-style-link:"Balloon Text";
+	mso-ansi-font-size:9.0pt;
+	mso-bidi-font-size:9.0pt;
+	font-family:"Lucida Grande";
+	mso-ascii-font-family:"Lucida Grande";
+	mso-fareast-font-family:"MS Mincho";
+	mso-fareast-theme-font:minor-fareast;
+	mso-hansi-font-family:"Lucida Grande";
+	mso-bidi-font-family:"Lucida Grande";}
+span.SpellE
+	{mso-style-name:"";
+	mso-spl-e:yes;}
+span.GramE
+	{mso-style-name:"";
+	mso-gram-e:yes;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	mso-default-props:yes;
+	font-size:10.0pt;
+	mso-ansi-font-size:10.0pt;
+	mso-bidi-font-size:10.0pt;}
+@page WordSection1
+	{size:612.0pt 792.0pt;
+	margin:72.0pt 90.0pt 72.0pt 90.0pt;
+	mso-header-margin:35.4pt;
+	mso-footer-margin:35.4pt;
+	mso-paper-source:0;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+<!--[if gte mso 10]>
+<style>
+ /* Style Definitions */
+table.MsoNormalTable
+	{mso-style-name:"Table Normal";
+	mso-tstyle-rowband-size:0;
+	mso-tstyle-colband-size:0;
+	mso-style-noshow:yes;
+	mso-style-priority:99;
+	mso-style-parent:"";
+	mso-padding-alt:0cm 5.4pt 0cm 5.4pt;
+	mso-para-margin:0cm;
+	mso-para-margin-bottom:.0001pt;
+	mso-pagination:widow-orphan;
+	font-size:10.0pt;
+	font-family:"Times New Roman";}
+</style>
+<![endif]-->
+<meta name="created" content="00:00:00">
+<meta name="changedby" content="Gianpiero Cabodi">
+<meta name="changed" content="2011-03-22T00:00:00.009523400">
+<meta name="CHANGEDBY" content="Gianpiero Cabodi">
+<meta name="CHANGEDBY" content="Gianpiero Cabodi">
+<!--[if gte mso 9]><xml>
+ <o:shapedefaults v:ext="edit" spidmax="1026"/>
+</xml><![endif]--><!--[if gte mso 9]><xml>
+ <o:shapelayout v:ext="edit">
+  <o:idmap v:ext="edit" data="1"/>
+ </o:shapelayout></xml><![endif]-->
+</head>
+
+<body bgcolor="white" lang="EN-US" link="blue" vlink="purple" style="tab-interval:36.0pt" dir="ltr">
+
+<div class="WordSection1">
+
+<p><b><span lang="IT" style="font-size:18.0pt;mso-ansi-language:IT">­­<span class="SpellE">PdS</span></span></b><span lang="IT" style="mso-ansi-language:IT"> </span><b><span lang="IT" style="font-size:18.0pt;mso-ansi-language:IT">2019 - Laboratorio OS161
+5</span></b><span lang="IT" style="mso-ansi-language:IT"><o:p></o:p></span></p>
+
+<h1 style="margin-bottom:14.2pt"><span lang="IT" style="mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:
+IT">Realizzare il supporto per il file <span class="SpellE">system</span>: <span class="SpellE">system</span> <span class="SpellE">calls</span> open/<span class="SpellE">close</span> e completamento di <span class="SpellE">read</span>/<span class="SpellE"><span class="GramE">write</span></span><o:p></o:p></span></h1>
+
+<h1 style="margin-bottom:14.2pt"><span lang="IT" style="mso-fareast-font-family:
+&quot;Times New Roman&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:
+IT">&nbsp;<o:p></o:p></span></h1>
+
+<p class="textbody" style="margin-bottom:14.2pt"><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">In OS161 manca il supporto per il file <span class="SpellE">system</span>, inteso come insieme <span class="GramE">delle</span> <span class="SpellE">system</span> <span class="SpellE">calls</span> che <span class="GramE">forniscono</span> operazioni sui file, quali: </span><tt><span lang="IT" style="font-size:10.0pt;mso-ansi-language:IT">open</span></tt><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">, </span><span class="SpellE"><tt><span lang="IT" style="font-size:10.0pt;mso-ansi-language:IT">read</span></tt></span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">, </span><span class="SpellE"><tt><span lang="IT" style="font-size:10.0pt;mso-ansi-language:IT">write</span></tt></span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">, </span><span class="SpellE"><tt><span lang="IT" style="font-size:10.0pt;mso-ansi-language:IT">lseek</span></tt></span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">, </span><span class="SpellE"><tt><span lang="IT" style="font-size:10.0pt;mso-ansi-language:IT">close</span></tt></span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">, </span><tt><span lang="IT" style="font-size:10.0pt;mso-ansi-language:IT">dup2</span></tt><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">, </span><span class="SpellE"><tt><span lang="IT" style="font-size:10.0pt;mso-ansi-language:IT">chdir</span></tt></span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">, </span><tt><span lang="IT" style="font-size:10.0pt;mso-ansi-language:IT">__<span class="SpellE">getcwd</span>.</span></tt><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT"><o:p></o:p></span></p>
+
+<p class="textbody" style="margin-bottom:14.2pt"><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">Tale supporto, oltre a richiedere la
+realizzazione delle singole funzioni, <span class="GramE">necessita di</span>
+opportune strutture dati (tabelle dei file aperti, direttori, ecc.) che
+permettano la ricerca dei file e la loro identificazione a partire da </span><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT">id</span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT"> interi. <o:p></o:p></span></p>
+
+<p class="textbody" style="margin-bottom:14.2pt"><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">Si chiede di realizzare in forma
+parziale e semplificata tale supporto (</span><span lang="IT" style="font-family:
+&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">open</span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">, </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">close</span></span><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT">,</span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT"> </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT">read</span></span><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT"> e </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT">write</span></span><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">), dopo aver familiarizzato con le <span class="GramE">strutture</span> dati e le funzioni del <span class="SpellE">kernel</span>
+coinvolte:<o:p></o:p></span></p>
+
+<p class="textbody" style="margin-top:5.0pt;margin-right:0cm;margin-bottom:14.2pt;
+margin-left:36.0pt"><span lang="IT" style="font-family:Symbol;mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">·</span><span class="GramE"><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT">Il Virtual File System (VFS): .<span class="GramE">c</span>
+in </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">kern</span></span><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT">/<span class="SpellE">vfs</span></span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT"> e .<span class="GramE">h</span> </span><span class="SpellE"><span lang="IT" style="font-family:
+&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">kern</span></span><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT">/include/<span class="SpellE">vfs.h</span></span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">.
+In tale ambito la </span><span class="SpellE"><span lang="IT" style="font-family:
+&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">struct</span></span><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT"> <span class="SpellE">vnode</span></span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">
+rappresenta un file. Le funzioni </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT">vfs_open</span></span><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT"> e </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT">vfs_close</span></span><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT"> servono ad aprire e chiudere il file
+(si veda <span class="GramE">ad</span> es. </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT">runprogram</span></span><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">).<o:p></o:p></span></p>
+
+<p class="textbody" style="margin-top:5.0pt;margin-right:0cm;margin-bottom:14.2pt;
+margin-left:36.0pt"><span lang="IT" style="font-family:Symbol;mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">·</span><span class="GramE"><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT">Il supporto per trasferimento dati tra file, memoria <span class="SpellE">kernel</span> e memoria <span class="SpellE">user</span>: modulo </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">uio</span></span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">. Le
+funzioni di principale interesse in tale <span class="GramE">contesto</span>
+sono: </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">uio_kinit</span></span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">
+(seguita da VOP_READ o VOP_WRITE) per IO di <span class="SpellE">kernel</span>
+(per IO con buffer in <span class="SpellE">userspace</span> occorre una variante
+manuale di </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">uio_kinit</span></span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">) e
+</span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">uiomove</span></span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">
+(chiamata da </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">copyout</span></span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">, </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">copyin</span></span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT"> e </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">copystr</span></span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT"> (che
+trasferisce dati tra memoria <span class="SpellE">user</span> e <span class="SpellE">kernel</span>). Si noti che </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT">copyout</span></span><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT"> e </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT">copyin</span></span><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT"> servono per <span class="GramE">effettuare</span>
+copia di dati tra memoria <span class="SpellE">user</span> e <span class="SpellE">kernel</span>
+in modo sicuro (cioè senza che il <span class="SpellE">kernel</span> vada in
+crash nel caso di un puntatore <span class="SpellE">user</span> errato). <br>
+<i>Ad esempio, nel caso in cui, data una stringa di lunghezza </i></span><span class="SpellE"><i><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">len</span></i></span><i><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT"> in spazio <span class="SpellE">user</span> (</span></i><span class="SpellE"><i><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT">userptr_t</span></i></span><i><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT"> <span class="SpellE">stru</span></span></i><i><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">)
+da copiare in </span></i><span class="SpellE"><i><span lang="IT" style="font-family:
+&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">strk</span></i></span><i><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">
+(in spazio <span class="SpellE">kernel</span>: </span></i><span class="SpellE"><i><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT">char</span></i></span><i><span lang="IT" style="font-family:
+&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT"> *<span class="SpellE">strk</span></span></i><i><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">),<span class="GramE"> &nbsp;</span>la
+copia andrebbe fatta con </span></i><span class="SpellE"><i><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT">copyin</span></i></span><i><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT">(<span class="SpellE">stru</span>, <span class="SpellE">strk</span>,
+len+1);</span></i><i><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT"> <span class="SpellE">anzichè</span> con </span></i><i><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT">for (i=0; i&lt;=<span class="SpellE">len</span>; i++) { <span class="SpellE">strk</span>[i] = ((<span class="SpellE">char</span> *)<span class="SpellE">stru</span>)[i]; }</span></i><i><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">, oppure </span></i><span class="SpellE"><i><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT">memcpy</span></i></span><i><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT"> (<span class="SpellE">strk</span>, (<span class="SpellE">coid</span>
+*)<span class="SpellE">stru</span>, len+1)</span></i><i><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">. Si sono
+considerate le stringhe già correttamente allocate. Si è ipotizzato inoltre di
+copiare anche il terminatore di stringa (</span></i><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-ansi-language:IT">’</span><i><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT">\0’</span></i><i><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">).</span></i><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT"><o:p></o:p></span></p>
+
+<p class="textbody" style="margin-bottom:14.2pt"><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">Si consiglia di osservare come <span class="GramE">viene</span> gestito l’IO in </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT">runprogram</span></span><span lang="IT" style="font-family:
+&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">/<span class="SpellE">load_elf</span>/<span class="SpellE">load_segment</span></span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">,
+dalle quali si può prendere spunto per ulteriori ricerche sulle funzioni
+coinvolte. In particolare, si suggerisce di notare come <span class="GramE">venga</span>
+aperto e chiuso un file in </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT">runprogram</span></span><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">, mentre si guardi la </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">load_segment</span></span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">
+per realizzare (in </span><span class="SpellE"><span lang="IT" style="font-family:
+&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">sys_read</span></span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT"> e </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">sys_write</span></span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">) la
+lettura/scrittura tra file (dato un </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT">vnode</span></span><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">) e buffer utente (un </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">vaddr_t</span></span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">). In
+particolare, lettura e scrittura si realizzano con VOP_READ e VOP_WRITE,
+precedute da <span class="GramE">una </span>opportuna inizializzazione di una </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">struct</span></span><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT"> <span class="SpellE">iovec</span></span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT"> e di una </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">struct</span></span><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT"> <span class="SpellE">uio</span></span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT"> (si veda </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">load_segment</span></span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">).<o:p></o:p></span></p>
+
+<p class="textbody" style="margin-bottom:14.2pt"><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">Per testare </span><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT">open/<span class="SpellE">close</span></span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT"> si
+consiglia di utilizzare </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT">testbin</span></span><span lang="IT" style="font-family:
+&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">/<span class="SpellE">filetest</span></span><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT"> (senza argomenti al <span class="SpellE">main</span>, se si volessero usare argomenti al <span class="SpellE"><span class="GramE">main</span></span> si dovrebbe prima realizzarne
+il supporto, <span class="SpellE">cone</span> indicato nella parte opzionale che
+segue).<o:p></o:p></span></p>
+
+<p class="textbody" style="margin-bottom:14.2pt"><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">Si consiglia di<span class="GramE">&nbsp;
+</span>realizzare il supporto per </span><span lang="IT" style="font-family:&quot;Courier New&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">open</span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT"> e </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">close</span></span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT"> negli
+stessi file già usati per </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT">read</span></span><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT"> e </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT">write</span></span><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">.<o:p></o:p></span></p>
+
+<p class="textbody" style="margin-bottom:14.2pt"><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">Occorre generare, per un dato processo <span class="SpellE">user</span>, una tabella di puntatori a </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT">vnode</span></span><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT"> (per semplicità, realizzare un vettore
+di tali puntatori in cui si salva un <span class="GramE">puntatore</span> a <span class="SpellE">vnode</span> per ogni nuovo file creato). Non si richiede ancora
+di realizzare la doppia tabella (<span class="SpellE">user</span> e <span class="SpellE">kernel</span>)<span class="GramE">.,</span> che permetterebbe lo <span class="SpellE">sharing</span> di file tra processi. Un file <span class="GramE">viene</span>
+aperto e chiuso con le funzioni </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT">vfs_open</span></span><span lang="IT" style="font-family:
+&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">/<span class="SpellE">vfs_close</span></span><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT"> (si veda </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT">runprogram</span></span><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">). Attenzione: <span class="SpellE">stdin</span>,
+<span class="SpellE">stdout</span> e <span class="SpellE">stderr</span>, <span class="GramE">a meno che</span> siano <span class="SpellE">rediretti</span> su
+file, sono associati alla console (</span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT">kern</span></span><span lang="IT" style="font-family:&quot;Courier New&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">/<span class="SpellE">dev</span>/<span class="SpellE">generic</span>/<span class="SpellE">console.c</span></span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">)
+gestita mediante </span><span class="SpellE"><span lang="IT" style="font-family:
+&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">kprintf</span></span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">
+(che indirettamente chiama </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT">putch</span></span><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">) e </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT">kgets</span></span><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT"> (che chiama </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT">getch</span></span><span class="GramE"><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">).</span></span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT"> La
+tabella dei file va gestita in modo tale che la presenza o meno di un file su
+cui sia stato <span class="SpellE">rediretto</span> </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT">stdin</span></span><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">, </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT">stdout</span></span><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT"> o </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT">stderr</span></span><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">, determina il tipo di IO da <span class="GramE">effettuare</span> (a console o a file). <o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom:14.2pt"><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">&nbsp;<o:p></o:p></span></p>
+
+<p class="textbody" style="margin-bottom:14.2pt"><b><span lang="IT" style="font-size:20.0pt;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:
+IT">Passaggio degli argomenti al <span class="SpellE">main</span> </span></b><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT"><o:p></o:p></span></p>
+
+<p class="textbody" style="margin-bottom:14.2pt"><b><span lang="IT" style="font-size:20.0pt;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:
+IT">(ARGOMENTO FACOLTATIVO)</span></b><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT"><o:p></o:p></span></p>
+
+<p class="textbodymsonormal" style="margin-bottom:14.45pt"><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">Per passare
+gli argomenti (</span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">argv</span></span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">) a
+un programma utente occorre caricare gli argomenti nello spazio <span class="GramE">di </span>indirizzamento del programma (nello <span class="SpellE">stack</span>
+dell’<span class="SpellE">address</span> <span class="SpellE">space</span> <span class="SpellE">user</span>): sia le stringhe che il vettore di argomenti </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">argv</span></span><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT"> (un vettore di puntatori).</span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT"><o:p></o:p></span></p>
+
+<p class="textbodymsonormal" style="margin-bottom:14.45pt"><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">Attenzione!
+Un <span class="SpellE">char</span> può essere collocato in un qualunque
+indirizzo virtuale, mentre un puntatore deve essere <span class="GramE">ad</span>
+un indirizzo multiplo di 4 (<span class="SpellE">padding</span>).<o:p></o:p></span></p>
+
+<p class="textbodymsonormal" style="margin-bottom:14.45pt"><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">Un vincolo
+simile esiste per lo <span class="SpellE">stack</span> <span class="SpellE">pointer</span>,
+che deve essere <span class="GramE">ad</span> un indirizzo multiplo di 8 (in
+quanto i dati più grandi rappresentabili (double) sono di 8 byte)..<o:p></o:p></span></p>
+
+<p class="textbodymsonormal" style="margin-bottom:14.45pt"><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">Per
+comprendere come funziona il passaggio di </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT">argv</span></span><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT"> and </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT">argc</span></span><span lang="IT" style="font-family:&quot;Courier New&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">, </span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">si <span class="GramE">consideri</span>, ad esempio, </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT">testbin</span></span><span lang="IT" style="font-family:
+&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">/<span class="SpellE">tail</span></span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT">, che vuole due argomenti. </span><span style="mso-bidi-font-family:
+&quot;Times New Roman&quot;">Il </span><span class="GramE"><span style="font-family:&quot;Courier New&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;">main(</span></span><span style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;">)</span><span style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT"> </span><span style="mso-bidi-font-family:&quot;Times New Roman&quot;">di </span><span style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;">tail</span><span style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT"> </span><span style="mso-bidi-font-family:&quot;Times New Roman&quot;">è: </span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT"><o:p></o:p></span></p>
+
+<p class="textbodymsonormal" style="margin-bottom:14.45pt"><span class="SpellE"><span class="GramE"><span style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;">int</span></span></span><span style="mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom:14.2pt"><span class="GramE"><span style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;">main</span></span><span style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;">(<span class="SpellE">int</span> <span class="SpellE">argc</span>, char **<span class="SpellE">argv</span>)</span><span style="mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom:14.2pt"><span style="font-family:&quot;Courier New&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;">{</span><span style="mso-bidi-font-family:
+&quot;Times New Roman&quot;"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom:14.2pt"><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class="SpellE"><span class="GramE"><span style="font-family:&quot;Courier New&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;">int</span></span></span><span style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;"> file;</span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom:14.2pt"><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class="GramE"><span style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;">if</span></span><span style="font-family:&quot;Courier New&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;"> (<span class="SpellE">argc</span> &lt; 3)
+{</span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:
+IT"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom:14.2pt"><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class="SpellE"><span class="GramE"><span style="font-family:&quot;Courier New&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;">errx</span></span></span><span style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;">(1,
+"Usage: tail&nbsp; ");</span><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom:14.2pt"><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;">}</span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom:14.2pt"><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class="GramE"><span style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;">file</span></span><span style="font-family:&quot;Courier New&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;"> = open(<span class="SpellE">argv</span>[1],
+O_RDONLY);</span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom:14.2pt"><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class="GramE"><span style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;">if</span></span><span style="font-family:&quot;Courier New&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;"> (file &lt; 0) {</span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom:14.2pt"><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class="GramE"><span style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;">err</span></span><span style="font-family:&quot;Courier New&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;">(1, "%s", <span class="SpellE">argv</span>[1]);</span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom:14.2pt"><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;">}</span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom:14.2pt"><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class="GramE"><span style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;">tail</span></span><span style="font-family:&quot;Courier New&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;">(file, <span class="SpellE">atoi</span>(<span class="SpellE">argv</span>[2]), <span class="SpellE">argv</span>[1]);</span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom:14.2pt"><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class="GramE"><span style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;">close</span></span><span style="font-family:&quot;Courier New&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;">(file);</span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom:14.2pt"><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span class="SpellE"><span class="GramE"><span lang="IT" style="font-family:
+&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">return</span></span></span><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT"> 0;</span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;
+mso-ansi-language:IT"><o:p></o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom:14.2pt"><span lang="IT" style="font-family:
+&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">}</span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT"><o:p></o:p></span></p>
+
+<p class="textbodymsonormal" style="margin-bottom:14.45pt"><span class="SpellE"><span class="GramE"><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">argv</span></span></span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT"> è un
+puntatore a puntatore a <span class="SpellE">char</span> – punta a un
+vettore di puntatori a carattere, ognuno dei quali punta a uno degli argomenti.
+Ad esempio, se </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;
+mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">sort</span></span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT">
+fosse chiamato con una linea di comando: <o:p></o:p></span></p>
+
+<p class="textbodymsonormal" style="margin-bottom:14.45pt"><span style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:&quot;Times New Roman&quot;">OS/161
+kernel [? for menu]: p <span class="SpellE">testbin</span>/sort foo 100</span><span style="mso-bidi-font-family:&quot;Times New Roman&quot;"><o:p></o:p></span></p>
+
+<p class="textbody" style="margin-bottom:14.2pt"><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">Le variabili<span class="GramE"> &nbsp;</span></span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">argv</span></span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT"> and </span><span class="SpellE"><span lang="IT" style="font-family:&quot;Courier New&quot;;mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">argc</span></span><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT"> sarebbero
+come nella figura: <o:p></o:p></span></p>
+
+<p class="textbody" style="margin-bottom:14.2pt"><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT">&nbsp;</span><span style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-no-proof:yes"><!--[if gte vml 1]><v:shapetype id="_x0000_t75"
+ coordsize="21600,21600" o:spt="75" o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"
+ filled="f" stroked="f">
+ <v:stroke joinstyle="miter"/>
+ <v:formulas>
+  <v:f eqn="if lineDrawn pixelLineWidth 0"/>
+  <v:f eqn="sum @0 1 0"/>
+  <v:f eqn="sum 0 0 @1"/>
+  <v:f eqn="prod @2 1 2"/>
+  <v:f eqn="prod @3 21600 pixelWidth"/>
+  <v:f eqn="prod @3 21600 pixelHeight"/>
+  <v:f eqn="sum @0 0 1"/>
+  <v:f eqn="prod @6 1 2"/>
+  <v:f eqn="prod @7 21600 pixelWidth"/>
+  <v:f eqn="sum @8 21600 0"/>
+  <v:f eqn="prod @7 21600 pixelHeight"/>
+  <v:f eqn="sum @10 21600 0"/>
+ </v:formulas>
+ <v:path o:extrusionok="f" gradientshapeok="t" o:connecttype="rect"/>
+ <o:lock v:ext="edit" aspectratio="t"/>
+</v:shapetype><v:shape id="Picture_x0020_2" o:spid="_x0000_i1025" type="#_x0000_t75"
+ alt="Description: TOSHIBA EXT:USER:CABODI:DIDA:PS:pds-2019:laboratorio:lab 5 - OS161_ system calls open:fig.pdf"
+ style='width:402pt;height:142pt;visibility:visible;mso-wrap-style:square'>
+ <v:imagedata src="lab-os161-2018-5_files/image001.emz" o:title="fig.pdf"/>
+</v:shape><![endif]--><!--[if !vml]--><img width="404" height="144" src="file:///Volumes/TOSHIBA%20EXT/USER/CABODI/DIDA/PS/pds-2019/laboratorio/lab%205%20-%20OS161_%20system%20calls%20open/close%20e%20read/write/lab-os161-2018-5_files/image002.png" alt="Description: TOSHIBA EXT:USER:CABODI:DIDA:PS:pds-2019:laboratorio:lab 5 - OS161_ system calls open:fig.pdf" v:shapes="Picture_x0020_2"><!--[endif]--></span><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT"><o:p></o:p></span></p>
+
+<p class="textbody" style="margin-bottom:14.2pt"><a name="Picture_2"></a><span lang="IT" style="mso-bidi-font-family:&quot;Times New Roman&quot;;mso-ansi-language:IT"><o:p>&nbsp;</o:p></span></p>
+
+<p class="MsoNormal" style="margin-bottom:14.2pt"><span lang="IT" style="mso-bidi-font-family:
+&quot;Times New Roman&quot;;mso-ansi-language:IT"><br>
+&nbsp;<o:p></o:p></span></p>
+
+</div>
+
+
+
+
+</body></html>

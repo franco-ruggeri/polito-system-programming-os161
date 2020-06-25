@@ -1,8 +1,2 @@
-# PdS
-Programmazione di Sistema (system programming) at Politecnico di Torino
-
-The course is composed of 2 parts:
-* Kernel programming: programming new modules for the kernel of OS161
-* System programming: programming using services provided by the OS (through system calls)
-
-The repository contains only the first part for now.
+# Programmazione di Sistema - Part 1 - Operating system design with OS/161
+Assignments for the first part (taught by prof. Cabodi) of the course System Programming (Programmazione di Sistema) at Politecnico di Torino.
